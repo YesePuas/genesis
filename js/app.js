@@ -240,7 +240,7 @@ function simulateLogin(email, password, rememberMe) {
     // Simular delay de red
     setTimeout(() => {
         // Credenciales de demo
-        if (email === 'admin@genesis.com' && password === '123456') {
+        if (email === 'admin@genesix.com' && password === '123456') {
             // Guardar credenciales si "Recordarme" está marcado
             if (rememberMe) {
                 localStorage.setItem('rememberedEmail', email);
@@ -263,7 +263,7 @@ function simulateLogin(email, password, rememberMe) {
         } else {
             // Show error animation
             addShakeAnimation(loginForm);
-            showNotification('Credenciales incorrectas. Usa: admin@genesis.com / 123456', 'error');
+            showNotification('Credenciales incorrectas. Usa: admin@genesix.com / 123456', 'error');
             
             // Restaurar botón
             loginBtn.classList.remove('loading');
@@ -507,7 +507,7 @@ document.addEventListener('keydown', function(e) {
     
     // Ctrl/Cmd + Enter para login rápido
     if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
-        emailInput.value = 'admin@genesis.com';
+        emailInput.value = 'admin@genesix.com';
         passwordInput.value = '123456';
         addSuccessAnimation(emailInput);
         addSuccessAnimation(passwordInput);

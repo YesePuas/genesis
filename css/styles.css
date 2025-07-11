@@ -102,25 +102,39 @@ body {
 .navbar-toggle {
   display: none;
 }
+/* --- HAMBURGUESA RESPONSIVE --- */
 .navbar-burger {
   display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
   cursor: pointer;
+  z-index: 201;
   margin-left: 18px;
-  z-index: 200;
+  transition: background 0.18s;
+  padding: 0;
 }
-.navbar-burger span {
-  display: block;
+.burger-bar {
   width: 24px;
   height: 3px;
   background: #2563eb;
   border-radius: 2px;
-  margin: 3px 0;
-  transition: all 0.25s;
+  margin: 4px 0;
+  transition: all 0.3s cubic-bezier(.4,0,.2,1);
+}
+@media (max-width: 480px) {
+  .navbar-burger {
+    width: 34px;
+    height: 34px;
+  }
+  .burger-bar {
+    width: 20px;
+    height: 2.5px;
+  }
 }
 
 /* --- HERO --- */
@@ -163,8 +177,8 @@ body {
   background: linear-gradient(90deg, #2563eb 80%, #143fa3 100%);
   color: #fff;
   font-weight: 600;
-  font-size: 1.12rem;
-  padding: 14px 32px;
+  font-size: 1.08rem;
+  padding: 12px 28px;
   border-radius: 16px;
   text-decoration: none;
   box-shadow: 0 2px 8px rgba(37,99,235,0.10);
@@ -174,6 +188,13 @@ body {
   outline: none;
   cursor: pointer;
   letter-spacing: 0.01em;
+}
+@media (max-width: 480px) {
+  .cta-btn {
+    font-size: 0.98rem;
+    padding: 10px 16px;
+    border-radius: 12px;
+  }
 }
 .cta-btn:hover, .cta-btn:focus {
   background: linear-gradient(90deg, #143fa3 80%, #2563eb 100%);
