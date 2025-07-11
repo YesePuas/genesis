@@ -212,6 +212,33 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+  const stepper = document.getElementById('wizardStepper');
+  if (!stepper) return;
+  const steps = stepper.querySelectorAll('.wizard-step');
+  const currentStep = parseInt(document.body.getAttribute('data-step'), 10);
+
+  steps.forEach((step, idx) => {
+    const icon = step.querySelector('.wizard-step-icon');
+    const label = step.querySelector('.wizard-step-label');
+    // Limpia clases previas
+    step.classList.remove('step-completed', 'step-active', 'step-pending');
+    icon.innerHTML = (idx + 1).toString();
+
+    if (idx + 1 < currentStep) {
+      step.classList.add('step-completed');
+      icon.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i>';
+      step.setAttribute('aria-label', `Paso ${idx + 1} completado: ${label.textContent}`);
+    } else if (idx + 1 === currentStep) {
+      step.classList.add('step-active');
+      step.setAttribute('aria-label', `Paso ${idx + 1} activo: ${label.textContent}`);
+    } else {
+      step.classList.add('step-pending');
+      step.setAttribute('aria-label', `Paso ${idx + 1} pendiente: ${label.textContent}`);
+    }
+  });
+});
+
 // Estilo para inputs con error
 const style = document.createElement('style');
 style.textContent = `
