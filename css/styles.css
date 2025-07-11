@@ -221,3 +221,11 @@ body {
   .footer-logo { font-size: 1rem; }
   .footer-col { min-width: 0; }
 } 
+ul.navbar-links, ul.navbar-links li {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+ul.navbar-links {
+  gap: 28px !important;
+} 

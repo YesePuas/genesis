@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const drawer = document.getElementById('navbarDrawer');
   const overlay = document.getElementById('navbarOverlay');
   const drawerLinks = drawer ? drawer.querySelectorAll('a') : [];
+  const closeBtn = document.getElementById('navbarCloseBtn');
 
   function openDrawer() {
     drawer.classList.add('open');
@@ -40,5 +41,8 @@ document.addEventListener('DOMContentLoaded', function () {
         closeDrawer();
       }
     });
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeDrawer);
+    }
   }
 }); 
