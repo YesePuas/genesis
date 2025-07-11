@@ -348,18 +348,6 @@ input[type="tel"]:focus {
   color: #ef4444;
   outline: none;
 }
-@media (max-width: 700px) {
-  .wizard-cancel-link {
-    position: static;
-    display: block;
-    margin: 0 auto 1.1rem auto;
-    text-align: center;
-    width: fit-content;
-    top: unset;
-    right: unset;
-    font-size: 1.08rem;
-  }
-}
 
 .form-grid {
   display: grid;
@@ -575,16 +563,6 @@ input[type="tel"]:focus {
     max-width: 99vw;
     padding: 0 2vw;
   }
-  .wizard-cancel-link {
-    position: static;
-    display: block;
-    margin: 0 auto 1.1rem auto;
-    text-align: center;
-    width: fit-content;
-    top: unset;
-    right: unset;
-    font-size: 1.08rem;
-  }
   .wizard-title {
     font-size: 1.15rem;
     margin-bottom: 1.2rem;
@@ -608,5 +586,32 @@ input[type="tel"]:focus {
     font-size: 1.01rem;
     padding: 11px 0;
     border-radius: 8px;
+  }
+} 
+
+.wizard-header-row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1.2rem;
+}
+.wizard-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 0;
+  letter-spacing: -1px;
+  text-align: left;
+}
+@media (max-width: 700px) {
+  .wizard-header-row {
+    padding-bottom: 0.7rem;
+  }
+  .wizard-title {
+    font-size: 1.08rem;
+    margin-bottom: 0;
+    text-align: left;
   }
 } 
