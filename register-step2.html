@@ -58,5 +58,17 @@
     </div>
   </div>
   <script src="js/register.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const btnContinuar = document.getElementById('btnContinuar');
+      if (btnContinuar) {
+        btnContinuar.addEventListener('click', function () {
+          if (!btnContinuar.disabled) {
+            window.location.href = 'register-step3.html';
+          }
+        });
+      }
+    });
+  </script>
 </body>
 </html> 

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro Empresarial - Paso 3 | Janus IA</title>
+  <link rel="stylesheet" href="css/register.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body data-step="3">
+  <div class="wizard-bg">
+    <div class="register-container">
+      <header class="wizard-header">
+        <nav class="wizard-steps" aria-label="Progreso del registro">
+          <ol class="wizard-steps-list" id="wizardStepper">
+            <li class="wizard-step"><span class="wizard-step-icon">1</span><span class="wizard-step-label">Tus datos</span></li>
+            <li class="wizard-step"><span class="wizard-step-icon">2</span><span class="wizard-step-label">Verifica tu correo</span></li>
+            <li class="wizard-step"><span class="wizard-step-icon">3</span><span class="wizard-step-label">Empresa</span></li>
+            <li class="wizard-step"><span class="wizard-step-icon">4</span><span class="wizard-step-label">Servicios</span></li>
+            <li class="wizard-step"><span class="wizard-step-icon">5</span><span class="wizard-step-label">Plan</span></li>
+            <li class="wizard-step"><span class="wizard-step-icon">6</span><span class="wizard-step-label">Usuarios</span></li>
+          </ol>
+        </nav>
+      </header>
+      <main class="wizard-main">
+        <section class="wizard-card">
+          <div class="wizard-header-row">
+            <h1 class="wizard-title">Datos de la empresa</h1>
+            <a href="index.html" class="wizard-cancel-link" title="Cancelar y volver al inicio">Cancelar</a>
+          </div>
+          <form class="wizard-form" id="empresaForm" autocomplete="off" novalidate>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="nombreEmpresa">Nombre de la empresa</label>
+                <input type="text" id="nombreEmpresa" name="nombreEmpresa" required autocomplete="organization">
+                <small class="input-example">Ej: Soluciones S.A.S.</small>
+                <div class="input-error-message" id="error-nombreEmpresa"></div>
+              </div>
+              <div class="form-group">
+                <label for="tipoEmpresa">Tipo de empresa</label>
+                <select id="tipoEmpresa" name="tipoEmpresa" required>
+                  <option value="">Selecciona una opción</option>
+                  <option value="SAS">S.A.S.</option>
+                  <option value="SA">S.A.</option>
+                  <option value="LTDA">Ltda.</option>
+                  <option value="Persona Natural">Persona Natural</option>
+                  <option value="Otra">Otra</option>
+                </select>
+                <div class="input-error-message" id="error-tipoEmpresa"></div>
+              </div>
+              <div class="form-group">
+                <label for="nitEmpresa">NIT o identificación fiscal</label>
+                <input type="text" id="nitEmpresa" name="nitEmpresa" required autocomplete="taxID">
+                <small class="input-example">Ej: 900123456-7</small>
+                <div class="input-error-message" id="error-nitEmpresa"></div>
+              </div>
+              <div class="form-group">
+                <label for="paisEmpresa">País</label>
+                <select id="paisEmpresa" name="paisEmpresa" required>
+                  <option value="">Selecciona un país</option>
+                  <option value="Colombia">Colombia</option>
+                  <option value="México">México</option>
+                  <option value="Argentina">Argentina</option>
+                  <option value="Chile">Chile</option>
+                  <option value="Perú">Perú</option>
+                  <option value="Otro">Otro</option>
+                </select>
+                <div class="input-error-message" id="error-paisEmpresa"></div>
+              </div>
+              <div class="form-group" style="grid-column: 1 / -1;">
+                <label for="ciudadEmpresa">Ciudad</label>
+                <input type="text" id="ciudadEmpresa" name="ciudadEmpresa" required autocomplete="address-level2">
+                <small class="input-example">Ej: Bogotá</small>
+                <div class="input-error-message" id="error-ciudadEmpresa"></div>
+              </div>
+            </div>
+            <div class="wizard-actions-row wizard-actions-two">
+              <button type="button" class="btn btn-secondary" id="btnRegresar">Regresar</button>
+              <button type="submit" class="btn btn-primary btn-disabled" id="btnContinuar" disabled>Continuar</button>
+            </div>
+          </form>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="js/register.js"></script>
+  <script>
+    // Validación modular y feedback inline
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('empresaForm');
+      const btnContinuar = document.getElementById('btnContinuar');
+      const requiredFields = [
+        'nombreEmpresa',
+        'tipoEmpresa',
+        'nitEmpresa',
+        'paisEmpresa',
+        'ciudadEmpresa'
+      ];
+      function validateField(id) {
+        const el = document.getElementById(id);
+        const error = document.getElementById('error-' + id);
+        if (!el.value.trim()) {
+          error.textContent = 'Este campo es obligatorio';
+          el.classList.add('input-error');
+          return false;
+        } else {
+          error.textContent = '';
+          el.classList.remove('input-error');
+          return true;
+        }
+      }
+      function checkFormValidity() {
+        let allValid = true;
+        requiredFields.forEach(id => {
+          if (!validateField(id)) allValid = false;
+        });
+        btnContinuar.disabled = !allValid;
+        btnContinuar.classList.toggle('btn-disabled', !allValid);
+        btnContinuar.classList.toggle('btn-primary', allValid);
+      }
+      form.addEventListener('input', checkFormValidity);
+      form.addEventListener('change', checkFormValidity);
+      requiredFields.forEach(id => {
+        document.getElementById(id).addEventListener('blur', function() {
+          validateField(id);
+        });
+      });
+      // Botón regresar
+      document.getElementById('btnRegresar').onclick = function () {
+        window.location.href = 'register-step2.html';
+      };
+      // Enviar formulario
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        checkFormValidity();
+        if (!btnContinuar.disabled) {
+          window.location.href = 'register-step4.html';
+        }
+      });
+    });
+  </script>
+</body>
+</html> 
