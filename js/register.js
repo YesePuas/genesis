@@ -13,16 +13,20 @@ document.addEventListener('DOMContentLoaded', function () {
   // Inicializar barra de pasos
   function renderSteps() {
     steps.forEach((step, idx) => {
-      step.classList.remove('completed', 'active');
+      step.classList.remove('step-completed', 'step-active', 'step-pending', 'completed', 'active');
       // Estado visual: solo el paso actual es activo
       if (idx === currentStep) {
-        step.classList.add('active');
+        step.classList.add('step-active');
         step.querySelector('.wizard-step-icon').textContent = idx + 1;
+        step.querySelector('.wizard-step-label').style.fontWeight = '700';
       } else if (stepsCompleted[idx]) {
-        step.classList.add('completed');
+        step.classList.add('step-completed');
         step.querySelector('.wizard-step-icon').innerHTML = '<i class="fas fa-check"></i>';
+        step.querySelector('.wizard-step-label').style.fontWeight = '500';
       } else {
+        step.classList.add('step-pending');
         step.querySelector('.wizard-step-icon').textContent = idx + 1;
+        step.querySelector('.wizard-step-label').style.fontWeight = '500';
       }
     });
   }

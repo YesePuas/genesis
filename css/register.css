@@ -615,3 +615,65 @@ input[type="tel"]:focus {
     text-align: left;
   }
 } 
+
+/* ========== WIZARD STEPPER ESTADOS CLAROS ========== */
+.wizard-step.step-active {
+  color: var(--step-active);
+}
+.wizard-step.step-active .wizard-step-icon {
+  background: var(--primary);
+  color: #fff;
+  border: 2px solid var(--primary);
+  box-shadow: 0 2px 8px rgba(37,99,235,0.10);
+}
+.wizard-step.step-active .wizard-step-label {
+  color: var(--step-active);
+  font-weight: 700;
+}
+
+.wizard-step.step-completed {
+  color: var(--success);
+}
+.wizard-step.step-completed .wizard-step-icon {
+  background: #e6f9f2;
+  color: var(--success);
+  border: 2px solid var(--success);
+}
+.wizard-step.step-completed .wizard-step-label {
+  color: #19b37a;
+  font-weight: 500;
+}
+.wizard-step.step-completed .wizard-step-icon i {
+  font-size: 1.15rem;
+  font-weight: 900;
+  vertical-align: middle;
+}
+
+.wizard-step.step-pending {
+  color: var(--step-inactive);
+}
+.wizard-step.step-pending .wizard-step-icon {
+  background: #e0e7ff;
+  color: var(--step-inactive);
+  border: 2px solid #e0e7ff;
+}
+.wizard-step.step-pending .wizard-step-label {
+  color: var(--step-inactive);
+  font-weight: 500;
+}
+
+/* Mejorar contraste y claridad en mobile */
+@media (max-width: 768px) {
+  .wizard-step.step-active .wizard-step-label {
+    font-size: 1.01rem;
+    font-weight: 700;
+  }
+  .wizard-step.step-completed .wizard-step-label {
+    font-size: 0.97rem;
+    font-weight: 500;
+  }
+  .wizard-step.step-pending .wizard-step-label {
+    font-size: 0.97rem;
+    font-weight: 500;
+  }
+} 
