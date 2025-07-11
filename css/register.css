@@ -725,7 +725,7 @@ input[type="tel"]:focus {
 .wizard-actions-row {
   display: flex;
   gap: 1rem;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   margin-top: 1.5rem;
   width: 100%;
@@ -733,9 +733,20 @@ input[type="tel"]:focus {
 
 /* Botones en wizard-actions-row distribuidos */
 .wizard-actions-row .btn {
-  flex: 1;
+  flex: 0 0 auto;
   min-width: 140px;
   max-width: 200px;
+}
+
+/* Botón de validar correo más ancho */
+.wizard-actions-row .btn-primary {
+  min-width: 220px;
+  max-width: 280px;
+}
+
+/* Cuando hay dos botones, distribuirlos */
+.wizard-actions-row.wizard-actions-two {
+  justify-content: space-between;
 }
 
 .btn.btn-secondary {
@@ -861,11 +872,19 @@ input[type="tel"]:focus {
     margin-top: 1rem;
     flex-direction: column;
     align-items: stretch;
+    justify-content: center;
   }
   .wizard-actions-row .btn {
     width: 100%;
     min-width: auto;
     max-width: none;
+  }
+  .wizard-actions-row .btn-primary {
+    min-width: auto;
+    max-width: none;
+  }
+  .wizard-actions-row.wizard-actions-two {
+    justify-content: center;
   }
   .btn.btn-secondary, .btn.btn-disabled {
     padding: 10px 12px;
