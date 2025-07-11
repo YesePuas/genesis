@@ -711,7 +711,7 @@ input[type="tel"]:focus {
   font-size: 1.05rem;
   color: var(--text-main);
   margin-bottom: 0.7rem;
-  text-align: center;
+  text-align: left;
   font-weight: 500;
 }
 
