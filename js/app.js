@@ -66,9 +66,11 @@ function togglePasswordVisibility() {
     // Add ripple effect
     addRippleToButton(togglePasswordBtn);
     
+    const icon = togglePasswordBtn.querySelector('i');
     if (isPasswordVisible) {
         passwordInput.type = 'text';
-        togglePasswordBtn.innerHTML = '<i class="fas fa-eye-slash"></i>';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
         togglePasswordBtn.setAttribute('title', 'Ocultar contraseña');
         
         // Add success animation
@@ -78,7 +80,8 @@ function togglePasswordVisibility() {
         }, 500);
     } else {
         passwordInput.type = 'password';
-        togglePasswordBtn.innerHTML = '<i class="fas fa-eye"></i>';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
         togglePasswordBtn.setAttribute('title', 'Mostrar contraseña');
     }
 }
