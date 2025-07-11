@@ -3,7 +3,7 @@
   --primary: #2563eb;
   --primary-dark: #143fa3;
   --success: #10b981;
-  --gray-bg: #f4f6f8;
+  --gray-bg: #f7f9fb;
   --card-bg: #fff;
   --border: #e5e7eb;
   --text-main: #222;
@@ -11,9 +11,9 @@
   --step-inactive: #cbd5e1;
   --step-active: #2563eb;
   --step-completed: #10b981;
-  --shadow: 0 4px 32px rgba(30,64,175,0.10);
-  --radius: 18px;
-  --font-main: 'Inter', 'Poppins', Arial, sans-serif;
+  --shadow: 0 2px 16px rgba(30,64,175,0.07); /* igual que login */
+  --radius: 16px; /* igual que login */
+  --font-main: 'Inter', Arial, sans-serif;
 }
 
 body {
@@ -30,6 +30,7 @@ body {
   align-items: center;
   justify-content: center;
   background: var(--gray-bg);
+  padding: 2.5rem 0;
 }
 
 .wizard-container {
@@ -142,8 +143,8 @@ body {
 }
 
 .wizard-card {
-  width: 78vw;
-  max-width: 540px;
+  width: 80vw;
+  max-width: 900px;
   min-width: 340px;
   background: var(--card-bg);
   border-radius: var(--radius);
@@ -252,7 +253,7 @@ input[type="tel"]:focus {
 .btn {
   display: inline-block;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 1.08rem;
   font-weight: 700;
   padding: 13px 0;
@@ -330,7 +331,7 @@ input[type="tel"]:focus {
   position: absolute;
   top: 1.2rem;
   right: 1.2rem;
-  color: var(--text-muted);
+  color: var(--primary);
   font-size: 1.01rem;
   font-weight: 600;
   text-decoration: none;
@@ -359,6 +360,57 @@ input[type="tel"]:focus {
   }
 }
 
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem 1.2rem;
+  width: 100%;
+}
+@media (max-width: 700px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+label {
+  font-size: 1.01rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 2px;
+}
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  font-size: 1.05rem;
+  font-family: inherit;
+  background: #f7f9fb;
+  color: var(--text-main);
+  transition: border 0.18s, box-shadow 0.18s;
+  outline: none;
+  box-shadow: 0 1px 2px rgba(30,64,175,0.02);
+}
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus {
+  border-color: var(--primary);
+  box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+}
+.input-example {
+  font-size: 0.97rem;
+  color: var(--text-muted);
+  margin-top: 0.1rem;
+  margin-bottom: 0;
+  line-height: 1.2;
+}
+
 /* Barra de pasos perfectamente alineada y uniforme */
 .wizard-steps-list {
   display: grid;
@@ -366,6 +418,7 @@ input[type="tel"]:focus {
   align-items: end;
   gap: 0.5rem;
   min-height: 4.5rem;
+  width: 100%;
 }
 .wizard-step {
   display: flex;
@@ -373,9 +426,11 @@ input[type="tel"]:focus {
   align-items: center;
   justify-content: flex-end;
   min-height: 3.7rem;
+  position: relative;
 }
 .wizard-step .wizard-step-icon {
   margin-bottom: 0.2rem;
+  z-index: 2;
 }
 .wizard-step .wizard-step-label {
   min-height: 2.1em;
@@ -384,6 +439,17 @@ input[type="tel"]:focus {
   justify-content: center;
   text-align: center;
   line-height: 1.15;
+  z-index: 2;
+}
+.wizard-step.active .wizard-step-icon {
+  background: var(--primary);
+  color: #fff;
+  border: 2px solid var(--primary);
+  box-shadow: 0 2px 8px rgba(37,99,235,0.10);
+}
+.wizard-step.active .wizard-step-label {
+  color: var(--primary);
+  font-weight: 700;
 }
 
 @media (max-width: 700px) {

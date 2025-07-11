@@ -30,31 +30,27 @@
           <a href="index.html" class="wizard-cancel-link" title="Cancelar y volver al inicio">Cancelar</a>
           <h1 class="wizard-title">Tus datos</h1>
           <form class="wizard-form" autocomplete="off">
-            <div class="form-row form-group">
+            <div class="form-grid">
               <div class="form-group">
                 <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" name="nombre" required placeholder="Ej: Ana María">
+                <input type="text" id="nombre" name="nombre" required>
+                <small class="input-example">Ej: Ana María</small>
               </div>
               <div class="form-group">
                 <label for="apellido">Apellido</label>
-                <input type="text" id="apellido" name="apellido" required placeholder="Ej: González Pérez">
+                <input type="text" id="apellido" name="apellido" required>
+                <small class="input-example">Ej: González Pérez</small>
               </div>
-            </div>
-            <div class="form-group">
-              <label for="email">Correo electrónico</label>
-              <input type="email" id="email" name="email" required placeholder="tucorreo@empresa.com">
-            </div>
-            <div class="form-group">
-              <label for="telefono">Teléfono</label>
-              <input type="tel" id="telefono" name="telefono" required placeholder="Ej: +34 600 123 456">
-            </div>
-            <div class="form-group form-row align-center">
-              <label class="checkbox-label">
-                <input type="checkbox" id="chat-support" name="chat-support">
-                <span class="checkmark"></span>
-                Chatea con atención al cliente
-              </label>
-              <a href="#" class="chat-link">Iniciar chat</a>
+              <div class="form-group">
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" name="email" required>
+                <small class="input-example">Ej: tucorreo@empresa.com</small>
+              </div>
+              <div class="form-group">
+                <label for="telefono">Teléfono</label>
+                <input type="tel" id="telefono" name="telefono" required>
+                <small class="input-example">Ej: +34 600 123 456</small>
+              </div>
             </div>
             <button type="submit" class="btn btn-primary btn-block">Validar correo electrónico</button>
           </form>
