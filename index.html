@@ -1,71 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Genesis</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Genesis - Asistente Empresarial IA</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="login-main-container">
-        <form class="login-card-form" autocomplete="off">
-            <!-- Logo y nombre empresa -->
-            <div class="login-header-row">
-                <div class="login-logo">
-                    <span class="logo-icon"> <i class="fas fa-hexagon"></i> </span>
-                    <span class="logo-text">Genesis</span>
-                </div>
-            </div>
-            <!-- Título y subtítulo -->
-            <h1 class="login-title">Log in to your account.</h1>
-            <p class="login-subtitle">Enter your email address and password to log in.</p>
-            <!-- Inputs -->
-            <div class="login-fields">
-                <div class="input-group">
-                    <span class="input-icon"><i class="fas fa-envelope"></i></span>
-                    <input type="email" id="email" name="email" placeholder="Email Address" required autocomplete="username">
-                </div>
-                <div class="input-group password-group">
-                    <span class="input-icon"><i class="fas fa-lock"></i></span>
-                    <input type="password" id="password" name="password" placeholder="Password" required autocomplete="current-password">
-                    <button type="button" class="toggle-password" id="togglePassword" tabindex="-1" aria-label="Mostrar/Ocultar contraseña">
-                        <i class="fas fa-eye fa-fw"></i>
-                    </button>
-                </div>
-                <div class="forgot-row">
-                    <a href="#" class="forgot-password">Forgot password?</a>
-                </div>
-            </div>
-            <!-- Botón Login -->
-            <button type="submit" class="login-btn">Login</button>
-            <!-- Separador -->
-            <div class="separator-row">
-                <span class="separator-line"></span>
-                <span class="separator-text">or</span>
-                <span class="separator-line"></span>
-            </div>
-            <!-- Botones sociales -->
-            <div class="social-row">
-                <button type="button" class="social-btn google-btn">
-                    <span class="social-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="Google" /></span>
-                    Google
-                </button>
-                <button type="button" class="social-btn facebook-btn">
-                    <span class="social-icon"><i class="fab fa-facebook-f"></i></span>
-                    Facebook
-                </button>
-            </div>
-            <!-- Sign up -->
-            <div class="signup-row">
-                <span>Don’t you have an account? </span>
-                <a href="#" class="signup-link">Sign Up</a>
-            </div>
-        </form>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <div class="navbar-logo">Genesis</div>
+      <input type="checkbox" id="navbar-toggle" class="navbar-toggle" aria-label="Abrir menú" />
+      <label for="navbar-toggle" class="navbar-burger" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </label>
+      <div class="navbar-links-wrapper">
+        <ul class="navbar-links">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="#beneficios">Beneficios</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+        <div class="navbar-actions">
+          <a href="login.html" class="navbar-btn login-btn">Iniciar sesión</a>
+          <a href="register.html" class="navbar-btn register-btn">Registrarse</a>
+        </div>
+      </div>
     </div>
-    <script src="js/app.js"></script>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="inicio">
+    <div class="hero-content">
+      <h1 class="hero-title">Impulsa tu empresa con Inteligencia Artificial de alto nivel</h1>
+      <p class="hero-subtitle">Génesis es el asistente empresarial que automatiza, analiza y potencia la productividad de tu equipo. Descubre el futuro del trabajo inteligente y lleva tu negocio al siguiente nivel.</p>
+      <a href="#" class="cta-btn">
+        Solicita una demo
+        <span class="cta-icon"><i class="fas fa-arrow-right"></i></span>
+      </a>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-visual-bg">
+        <img src="https://assets-global.website-files.com/63e4e7e7e7e7e7e7e7e7e7e7/63e4e7e7e7e7e7e7e7e7e7e7_ai-illustration.svg" alt="Ilustración IA Empresarial" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Beneficios Section -->
+  <section class="benefits" id="beneficios">
+    <h2 class="section-title">Beneficios clave de Genesis</h2>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon"><i class="fas fa-bolt"></i></div>
+        <h3>Automatización Total</h3>
+        <p>Delega tareas repetitivas y enfócate en lo que realmente importa. Genesis automatiza procesos para ti.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon"><i class="fas fa-chart-line"></i></div>
+        <h3>Insights en Tiempo Real</h3>
+        <p>Obtén análisis y recomendaciones instantáneas para tomar mejores decisiones empresariales.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon"><i class="fas fa-users"></i></div>
+        <h3>Colaboración Inteligente</h3>
+        <p>Facilita la comunicación y el trabajo en equipo con herramientas impulsadas por IA.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon"><i class="fas fa-shield-alt"></i></div>
+        <h3>Seguridad Empresarial</h3>
+        <p>Tus datos están protegidos con los más altos estándares de seguridad y privacidad.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon"><i class="fas fa-cogs"></i></div>
+        <h3>Integración Sencilla</h3>
+        <p>Genesis se adapta fácilmente a tus sistemas y flujos de trabajo existentes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col footer-branding">
+        <div class="footer-logo"><span class="logo-icon"><i class="fas fa-hexagon"></i></span> Genesis</div>
+        <div class="footer-desc">Asistente empresarial impulsado por IA para empresas modernas.</div>
+      </div>
+      <div class="footer-col footer-links">
+        <h4>Enlaces</h4>
+        <a href="#inicio">Inicio</a>
+        <a href="#beneficios">Beneficios</a>
+        <a href="#login">Iniciar sesión</a>
+        <a href="#register">Registrarse</a>
+      </div>
+      <div class="footer-col footer-contact">
+        <h4>Contacto</h4>
+        <a href="mailto:info@genesis.com">info@genesis.com</a>
+        <div class="footer-social">
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copy">&copy; 2024 Genesis. Todos los derechos reservados.</div>
+  </footer>
 </body>
 </html> 

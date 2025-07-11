@@ -524,6 +524,40 @@ window.addEventListener('load', function() {
     }
 });
 
+// Scroll suave para los enlaces del navbar
+const navbarLinks = document.querySelectorAll('.navbar-links a');
+navbarLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href.startsWith('#')) {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                window.scrollTo({
+                    top: target.offsetTop - 70, // Compensa navbar fijo
+                    behavior: 'smooth'
+                });
+            }
+        }
+    });
+});
+
+// Resalta el enlace activo según la sección visible
+const sections = document.querySelectorAll('section');
+window.addEventListener('scroll', () => {
+    let scrollPos = window.scrollY + 80;
+    sections.forEach(section => {
+        if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
+            navbarLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${section.id}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    });
+});
+
 // Add CSS animations
 const style = document.createElement('style');
 style.textContent = `
