@@ -99,6 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const btnContinuar = document.getElementById('btnContinuar');
   const btnRegresar = document.getElementById('btnRegresar');
   const resendLink = document.querySelector('.resend-link');
+  const codeError = document.getElementById('codeError');
 
   if (codeInputs.length === 6) {
     // Auto-avance y solo números
@@ -116,18 +117,76 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
     });
+
     function checkCodeComplete() {
       const code = Array.from(codeInputs).map(i => i.value).join('');
+      
       if (code.length === 6 && /^[0-9]{6}$/.test(code)) {
-        btnContinuar.disabled = false;
-        btnContinuar.classList.remove('btn-disabled');
-        btnContinuar.classList.add('btn-primary');
+        // Validar código automáticamente
+        validateCode(code);
       } else {
+        // Reset estado
         btnContinuar.disabled = true;
         btnContinuar.classList.add('btn-disabled');
         btnContinuar.classList.remove('btn-primary');
+        hideError();
       }
     }
+
+    function validateCode(code) {
+      // Simular validación del código (en producción esto sería una llamada al servidor)
+      // Por ahora, consideramos válido cualquier código que termine en '123'
+      const isValid = code.endsWith('123');
+      
+      if (isValid) {
+        // Código válido
+        btnContinuar.disabled = false;
+        btnContinuar.classList.remove('btn-disabled');
+        btnContinuar.classList.add('btn-primary');
+        hideError();
+        
+        // Auto-avanzar después de un breve delay
+        setTimeout(() => {
+          advanceToNextStep();
+        }, 1000);
+      } else {
+        // Código inválido
+        btnContinuar.disabled = true;
+        btnContinuar.classList.add('btn-disabled');
+        btnContinuar.classList.remove('btn-primary');
+        showError();
+        
+        // Limpiar campos para nuevo intento
+        setTimeout(() => {
+          codeInputs.forEach(input => {
+            input.value = '';
+          });
+          codeInputs[0].focus();
+        }, 2000);
+      }
+    }
+
+    function showError() {
+      if (codeError) {
+        codeError.style.display = 'flex';
+        // Agregar shake animation
+        codeError.style.animation = 'shake 0.5s ease-in-out';
+      }
+    }
+
+    function hideError() {
+      if (codeError) {
+        codeError.style.display = 'none';
+        codeError.style.animation = '';
+      }
+    }
+
+    function advanceToNextStep() {
+      // Aquí irías al siguiente paso del wizard
+      console.log('Código válido, avanzando al siguiente paso...');
+      // window.location.href = 'register-step3.html';
+    }
+
     // Inicializar estado
     checkCodeComplete();
   }

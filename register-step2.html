@@ -32,7 +32,7 @@
             <a href="index.html" class="wizard-cancel-link" title="Cancelar y volver al inicio">Cancelar</a>
           </div>
           <form class="wizard-form" autocomplete="off">
-            <p class="wizard-instruction">Por favor, ingresa el código de 6 dígitos que enviamos a tu correo electrónico</p>
+            <p class="wizard-instruction">Por favor, ingresa el código de 6 dígitos que enviamos a tu correo electrónico (Código de prueba: Cualquier código que termine en "123" es considerado válido              )</p>
             <div class="code-inputs-row">
               <input type="text" inputmode="numeric" maxlength="1" class="code-input" autocomplete="one-time-code" required>
               <input type="text" inputmode="numeric" maxlength="1" class="code-input" autocomplete="one-time-code" required>
@@ -41,9 +41,14 @@
               <input type="text" inputmode="numeric" maxlength="1" class="code-input" autocomplete="one-time-code" required>
               <input type="text" inputmode="numeric" maxlength="1" class="code-input" autocomplete="one-time-code" required>
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Confirmar</button>
-            <div class="wizard-actions-row">
+            <div class="resend-link-container">
               <a href="#" class="wizard-link resend-link">Reenviar código</a>
+            </div>
+            <div class="code-error-message" id="codeError" style="display: none;">
+              <i class="fas fa-exclamation-circle"></i>
+              <span>Código inválido. Por favor, verifica e intenta nuevamente.</span>
+            </div>
+            <div class="wizard-actions-row">
               <button type="button" class="btn btn-secondary" id="btnRegresar">Regresar</button>
               <button type="button" class="btn btn-disabled" id="btnContinuar" disabled>Continuar</button>
             </div>
