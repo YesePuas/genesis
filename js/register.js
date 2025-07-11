@@ -93,6 +93,66 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
+// ========== LÓGICA PASO 2: VERIFICAR CÓDIGO ==========
+document.addEventListener('DOMContentLoaded', function () {
+  const codeInputs = document.querySelectorAll('.code-input');
+  const btnContinuar = document.getElementById('btnContinuar');
+  const btnRegresar = document.getElementById('btnRegresar');
+  const resendLink = document.querySelector('.resend-link');
+
+  if (codeInputs.length === 6) {
+    // Auto-avance y solo números
+    codeInputs.forEach((input, idx) => {
+      input.addEventListener('input', function (e) {
+        this.value = this.value.replace(/[^0-9]/g, '');
+        if (this.value && idx < codeInputs.length - 1) {
+          codeInputs[idx + 1].focus();
+        }
+        checkCodeComplete();
+      });
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Backspace' && !this.value && idx > 0) {
+          codeInputs[idx - 1].focus();
+        }
+      });
+    });
+    function checkCodeComplete() {
+      const code = Array.from(codeInputs).map(i => i.value).join('');
+      if (code.length === 6 && /^[0-9]{6}$/.test(code)) {
+        btnContinuar.disabled = false;
+        btnContinuar.classList.remove('btn-disabled');
+        btnContinuar.classList.add('btn-primary');
+      } else {
+        btnContinuar.disabled = true;
+        btnContinuar.classList.add('btn-disabled');
+        btnContinuar.classList.remove('btn-primary');
+      }
+    }
+    // Inicializar estado
+    checkCodeComplete();
+  }
+
+  // Regresar al paso anterior
+  if (btnRegresar) {
+    btnRegresar.addEventListener('click', function () {
+      window.location.href = 'register-step1.html';
+    });
+  }
+
+  // Simular reenviar código
+  if (resendLink) {
+    resendLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      resendLink.textContent = 'Código reenviado!';
+      resendLink.style.pointerEvents = 'none';
+      setTimeout(() => {
+        resendLink.textContent = 'Reenviar código';
+        resendLink.style.pointerEvents = '';
+      }, 2500);
+    });
+  }
+});
+
 // Estilo para inputs con error
 const style = document.createElement('style');
 style.textContent = `

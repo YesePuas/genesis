@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro Empresarial - Paso 2 | Janus IA</title>
+  <link rel="stylesheet" href="css/register.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="wizard-bg">
+    <div class="register-container">
+      <header class="wizard-header">
+        <nav class="wizard-steps" aria-label="Progreso del registro">
+          <ol class="wizard-steps-list">
+            <li class="wizard-step step-completed"><span class="wizard-step-icon"><i class="fas fa-check"></i></span><span class="wizard-step-label">Tus datos</span></li>
+            <li class="wizard-step step-active"><span class="wizard-step-icon">2</span><span class="wizard-step-label">Verifica tu correo</span></li>
+            <li class="wizard-step step-pending"><span class="wizard-step-icon">3</span><span class="wizard-step-label">Empresa</span></li>
+            <li class="wizard-step step-pending"><span class="wizard-step-icon">4</span><span class="wizard-step-label">Servicios</span></li>
+            <li class="wizard-step step-pending"><span class="wizard-step-icon">5</span><span class="wizard-step-label">Plan</span></li>
+            <li class="wizard-step step-pending"><span class="wizard-step-icon">6</span><span class="wizard-step-label">Usuarios</span></li>
+          </ol>
+        </nav>
+      </header>
+      <main class="wizard-main">
+        <section class="wizard-card">
+          <div class="wizard-header-row">
+            <h1 class="wizard-title">Verifica tu correo electrónico</h1>
+            <a href="index.html" class="wizard-cancel-link" title="Cancelar y volver al inicio">Cancelar</a>
+          </div>
+          <form class="wizard-form" autocomplete="off">
+            <p class="wizard-instruction">Por favor, ingresa el código de 6 dígitos que enviamos a tu correo electrónico. <span style="color:#bdbdc7">(Lorem ipsum placeholder)</span></p>
+            <div class="code-inputs-row">
+              <input type="text" inputmode="numeric" maxlength="1" class="code-input" autocomplete="one-time-code" required>
+              <input type="text" inputmode="numeric" maxlength="1" class="code-input" autocomplete="one-time-code" required>
+              <input type="text" inputmode="numeric" maxlength="1" class="code-input" autocomplete="one-time-code" required>
+              <input type="text" inputmode="numeric" maxlength="1" class="code-input" autocomplete="one-time-code" required>
+              <input type="text" inputmode="numeric" maxlength="1" class="code-input" autocomplete="one-time-code" required>
+              <input type="text" inputmode="numeric" maxlength="1" class="code-input" autocomplete="one-time-code" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Confirmar</button>
+            <div class="wizard-actions-row">
+              <a href="#" class="wizard-link resend-link">Reenviar código</a>
+              <button type="button" class="btn btn-secondary" id="btnRegresar">Regresar</button>
+              <button type="button" class="btn btn-disabled" id="btnContinuar" disabled>Continuar</button>
+            </div>
+          </form>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="js/register.js"></script>
+</body>
+</html> 
