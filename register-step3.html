@@ -28,53 +28,75 @@
       <main class="wizard-main">
         <section class="wizard-card">
           <div class="wizard-header-row">
-            <h1 class="wizard-title">Datos de la empresa</h1>
+            <h1 class="wizard-title">Información de la empresa</h1>
             <a href="index.html" class="wizard-cancel-link" title="Cancelar y volver al inicio">Cancelar</a>
           </div>
           <form class="wizard-form" id="empresaForm" autocomplete="off" novalidate>
-            <div class="form-grid">
-              <div class="form-group">
-                <label for="nombreEmpresa">Nombre de la empresa</label>
-                <input type="text" id="nombreEmpresa" name="nombreEmpresa" required autocomplete="organization">
-                <small class="input-example">Ej: Soluciones S.A.S.</small>
-                <div class="input-error-message" id="error-nombreEmpresa"></div>
+            <!-- Tipo de persona -->
+            <div class="form-section">
+              <label class="section-label" style="font-weight:600;">Tipo de persona</label>
+              <div class="form-row" style="margin-bottom:1.2rem; gap:2rem;">
+                <label><input type="radio" name="tipoPersona" value="natural" checked> Persona natural</label>
+                <label><input type="radio" name="tipoPersona" value="juridica"> Persona jurídica</label>
               </div>
-              <div class="form-group">
-                <label for="tipoEmpresa">Tipo de empresa</label>
-                <select id="tipoEmpresa" name="tipoEmpresa" required>
-                  <option value="">Selecciona una opción</option>
-                  <option value="SAS">S.A.S.</option>
-                  <option value="SA">S.A.</option>
-                  <option value="LTDA">Ltda.</option>
-                  <option value="Persona Natural">Persona Natural</option>
-                  <option value="Otra">Otra</option>
-                </select>
-                <div class="input-error-message" id="error-tipoEmpresa"></div>
+            </div>
+            <!-- Campos condicionales -->
+            <div id="personaNaturalFields" class="form-section">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="tipoDocumento">Tipo de documento</label>
+                  <select id="tipoDocumento" name="tipoDocumento" required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="CC">Cédula de ciudadanía</option>
+                    <option value="CE">Cédula de extranjería</option>
+                    <option value="TI">Tarjeta de identidad</option>
+                    <option value="Pasaporte">Pasaporte</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="numeroDocumento">Número de documento</label>
+                  <input type="text" id="numeroDocumento" name="numeroDocumento" required>
+                </div>
               </div>
-              <div class="form-group">
-                <label for="nitEmpresa">NIT o identificación fiscal</label>
-                <input type="text" id="nitEmpresa" name="nitEmpresa" required autocomplete="taxID">
-                <small class="input-example">Ej: 900123456-7</small>
-                <div class="input-error-message" id="error-nitEmpresa"></div>
+            </div>
+            <div id="personaJuridicaFields" class="form-section" style="display:none;">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="nombreEmpresa">Nombre de la empresa</label>
+                  <input type="text" id="nombreEmpresa" name="nombreEmpresa" required>
+                </div>
+                <div class="form-group">
+                  <label for="nitEmpresa">NIT</label>
+                  <input type="text" id="nitEmpresa" name="nitEmpresa" required>
+                </div>
+                <div class="form-group">
+                  <label for="telefonoEmpresa">Teléfono de contacto</label>
+                  <input type="text" id="telefonoEmpresa" name="telefonoEmpresa" required>
+                </div>
               </div>
-              <div class="form-group">
-                <label for="paisEmpresa">País</label>
-                <select id="paisEmpresa" name="paisEmpresa" required>
-                  <option value="">Selecciona un país</option>
-                  <option value="Colombia">Colombia</option>
-                  <option value="México">México</option>
-                  <option value="Argentina">Argentina</option>
-                  <option value="Chile">Chile</option>
-                  <option value="Perú">Perú</option>
-                  <option value="Otro">Otro</option>
-                </select>
-                <div class="input-error-message" id="error-paisEmpresa"></div>
-              </div>
-              <div class="form-group" style="grid-column: 1 / -1;">
-                <label for="ciudadEmpresa">Ciudad</label>
-                <input type="text" id="ciudadEmpresa" name="ciudadEmpresa" required autocomplete="address-level2">
-                <small class="input-example">Ej: Bogotá</small>
-                <div class="input-error-message" id="error-ciudadEmpresa"></div>
+            </div>
+            <!-- Información de contacto -->
+            <div class="form-section">
+              <label class="section-label" style="font-weight:600; margin-top:1.5rem;">Información de contacto</label>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="direccionEmpresa">Dirección</label>
+                  <input type="text" id="direccionEmpresa" name="direccionEmpresa" required>
+                </div>
+                <div class="form-group">
+                  <label for="paisEmpresa">Departamento</label>
+                  <select id="paisEmpresa" name="paisEmpresa" required>
+                    <option value="">Selecciona un departamento</option>
+                    <option value="Cundinamarca">Cundinamarca</option>
+                    <option value="Antioquia">Antioquia</option>
+                    <option value="Bolivar">Bolivar</option>
+                    <option value="Atlantico">Atlántico</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="ciudadEmpresa">Ciudad</label>
+                  <input type="text" id="ciudadEmpresa" name="ciudadEmpresa" required>
+                </div>
               </div>
             </div>
             <div class="wizard-actions-row wizard-actions-two">
@@ -88,33 +110,50 @@
   </div>
   <script src="js/register.js"></script>
   <script>
-    // Validación modular y feedback inline
+    // Modularidad y lógica condicional para el paso 3
     document.addEventListener('DOMContentLoaded', function () {
       const form = document.getElementById('empresaForm');
       const btnContinuar = document.getElementById('btnContinuar');
-      const requiredFields = [
-        'nombreEmpresa',
-        'tipoEmpresa',
-        'nitEmpresa',
-        'paisEmpresa',
-        'ciudadEmpresa'
-      ];
+      const tipoPersonaRadios = document.getElementsByName('tipoPersona');
+      const naturalFields = document.getElementById('personaNaturalFields');
+      const juridicaFields = document.getElementById('personaJuridicaFields');
+      // Modularidad: campos por tipo
+      const fieldsByTipo = {
+        natural: ['tipoDocumento', 'numeroDocumento', 'direccionEmpresa', 'paisEmpresa', 'ciudadEmpresa'],
+        juridica: ['nombreEmpresa', 'nitEmpresa', 'telefonoEmpresa', 'direccionEmpresa', 'paisEmpresa', 'ciudadEmpresa']
+      };
+      let formSubmitted = false;
+      function showFields(tipo) {
+        if (tipo === 'natural') {
+          naturalFields.style.display = '';
+          juridicaFields.style.display = 'none';
+        } else {
+          naturalFields.style.display = 'none';
+          juridicaFields.style.display = '';
+        }
+      }
+      tipoPersonaRadios.forEach(radio => {
+        radio.addEventListener('change', function () {
+          showFields(this.value);
+          checkFormValidity();
+        });
+      });
       function validateField(id) {
         const el = document.getElementById(id);
-        const error = document.getElementById('error-' + id);
-        if (!el.value.trim()) {
-          error.textContent = 'Este campo es obligatorio';
+        if (!el || !el.offsetParent) return true; // No visible
+        const showError = (el.classList.contains('touched') || formSubmitted);
+        if (!el.value.trim() && showError) {
           el.classList.add('input-error');
           return false;
         } else {
-          error.textContent = '';
           el.classList.remove('input-error');
           return true;
         }
       }
       function checkFormValidity() {
+        const tipo = document.querySelector('input[name="tipoPersona"]:checked').value;
         let allValid = true;
-        requiredFields.forEach(id => {
+        fieldsByTipo[tipo].forEach(id => {
           if (!validateField(id)) allValid = false;
         });
         btnContinuar.disabled = !allValid;
@@ -123,10 +162,15 @@
       }
       form.addEventListener('input', checkFormValidity);
       form.addEventListener('change', checkFormValidity);
-      requiredFields.forEach(id => {
-        document.getElementById(id).addEventListener('blur', function() {
-          validateField(id);
-        });
+      // Validación on blur
+      Object.values(fieldsByTipo).flat().forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.addEventListener('blur', function() {
+            el.classList.add('touched');
+            validateField(id);
+          });
+        }
       });
       // Botón regresar
       document.getElementById('btnRegresar').onclick = function () {
@@ -135,11 +179,19 @@
       // Enviar formulario
       form.addEventListener('submit', function (e) {
         e.preventDefault();
+        formSubmitted = true;
+        Object.values(fieldsByTipo).flat().forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.classList.add('touched');
+        });
         checkFormValidity();
         if (!btnContinuar.disabled) {
           window.location.href = 'register-step4.html';
         }
       });
+      // Inicializa visibilidad
+      showFields(document.querySelector('input[name="tipoPersona"]:checked').value);
+      checkFormValidity();
     });
   </script>
 </body>

@@ -537,18 +537,18 @@ input[type="tel"]:focus {
   .register-container {
     max-width: 99vw;
     padding: 0 1vw;
-  }
+}
   .wizard-card {
     max-width: 99vw;
     min-width: 0;
     padding: 1.2rem 0.7rem 1.1rem 0.7rem;
     border-radius: 12px;
-  }
+}
   .wizard-steps-list {
     max-width: 99vw;
     padding: 0 2vw;
   }
-} 
+}
 @media (max-width: 700px) {
   .register-container {
     max-width: 99vw;
@@ -569,16 +569,16 @@ input[type="tel"]:focus {
     margin-bottom: 1.2rem;
     margin-top: 0.5rem;
     text-align: center;
-  }
-  .form-group {
+}
+.form-group {
     gap: 0.18rem;
   }
   .input-example {
     font-size: 0.95rem;
-  }
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"] {
+}
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
     font-size: 1.01rem;
     padding: 10px 8px;
     border-radius: 8px;
@@ -587,7 +587,7 @@ input[type="tel"]:focus {
     font-size: 1.01rem;
     padding: 11px 0;
     border-radius: 8px;
-  }
+}
 } 
 
 .wizard-header-row {
