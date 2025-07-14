@@ -364,19 +364,22 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // ========== LÓGICA PASO 5: RESUMEN DEL PLAN ==========
+// ========== LÓGICA PASO 5: RESUMEN DEL PLAN ==========
 document.addEventListener('DOMContentLoaded', function () {
   if (document.body.getAttribute('data-step') !== '5') return;
 
   const services = {
-    marketing: { name: "Marketing Inteligente", price: 25, icon: "fa-bullhorn" },
-    facturacion: { name: "Facturación Electrónica", price: 20, icon: "fa-file-invoice-dollar" },
-    agenda: { name: "Agenda y Recordatorios", price: 15, icon: "fa-calendar-alt" },
-    chatbot: { name: "Chatbot Multicanal", price: 30, icon: "fa-comments" },
-    reportes: { name: "Reportes de Productividad", price: 35, icon: "fa-chart-line" },
-    crm: { name: "CRM Inteligente", price: 40, icon: "fa-users-cog" },
+    marketing: { name: "Marketing Inteligente", price: 25, icon: "fa-bullhorn", description: "Automatiza campañas de redes y correo." },
+    facturacion: { name: "Facturación Electrónica", price: 20, icon: "fa-file-invoice-dollar", description: "Genera y gestiona facturas con IA." },
+    agenda: { name: "Agenda y Recordatorios", price: 15, icon: "fa-calendar-alt", description: "Organización automatizada de citas." },
+    chatbot: { name: "Chatbot Multicanal", price: 30, icon: "fa-comments", description: "Atención en WhatsApp, web y más." },
+    reportes: { name: "Reportes de Productividad", price: 35, icon: "fa-chart-line", description: "Paneles de indicadores en tiempo real." },
+    crm: { name: "CRM Inteligente", price: 40, icon: "fa-users-cog", description: "Seguimiento automático de prospectos." },
   };
 
-  const selectedServices = JSON.parse(localStorage.getItem('selectedServices')) || ["marketing", "facturacion"];
+  // Simulación de servicios seleccionados (en un caso real, esto vendría del paso anterior)
+  const selectedServices = ["marketing", "facturacion", "chatbot"];
+
   const servicesListContainer = document.querySelector(".plan-services-list");
   const subtotalEl = document.getElementById("summarySubtotal");
   const impuestosEl = document.getElementById("summaryImpuestos");
@@ -386,6 +389,13 @@ document.addEventListener('DOMContentLoaded', function () {
   const couponMessageEl = document.getElementById("couponMessage");
 
   function renderServices() {
+    // Limpiar la lista antes de renderizar
+    servicesListContainer.innerHTML = `
+      <div class="plan-services-header">
+        <h2 class="section-title">Servicios seleccionados</h2>
+        <a href="register-step4.html" class="btn-edit-services"><i class="fas fa-pencil-alt"></i> Editar</a>
+      </div>`;
+
     let subtotal = 0;
     selectedServices.forEach(serviceKey => {
       const service = services[serviceKey];
@@ -396,7 +406,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="service-item-icon"><i class="fas ${service.icon}"></i></div>
         <div class="service-item-details">
           <div class="service-item-name">${service.name}</div>
-          <div class="service-item-description">Descripción breve del servicio.</div>
+          <div class="service-item-description">${service.description}</div>
         </div>
         <div class="service-item-price">${service.price}/mes</div>
       `;
@@ -415,13 +425,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
   applyCouponBtn.addEventListener("click", () => {
     const couponCode = couponInput.value.trim().toUpperCase();
+    let subtotal = 0;
+    selectedServices.forEach(serviceKey => {
+        subtotal += services[serviceKey].price;
+    });
+
     if (couponCode === "DESCUENTO20") {
-      const subtotal = selectedServices.reduce((acc, key) => acc + services[key].price, 0);
       const discount = subtotal * 0.20;
       updateSummary(subtotal, discount);
-      couponMessageEl.textContent = "Cupón aplicado con éxito!";
+      couponMessageEl.textContent = "¡Cupón aplicado!";
       couponMessageEl.style.color = "green";
     } else {
+      updateSummary(subtotal, 0);
       couponMessageEl.textContent = "Cupón no válido";
       couponMessageEl.style.color = "red";
     }
@@ -431,9 +446,37 @@ document.addEventListener('DOMContentLoaded', function () {
     window.location.href = 'register-step4.html';
   };
 
-  document.getElementById('btnContinuar').onclick = function () {
+  document.getElementById('btnContinuar').onclick = function (e) {
+    e.preventDefault();
+    // Aquí iría la lógica para guardar el plan y continuar
     window.location.href = 'register-step6.html';
   };
 
   renderServices();
+});
+
+// ========== LÓGICA MODAL DE TÉRMINOS Y CONDICIONES ==========
+document.addEventListener('DOMContentLoaded', function () {
+  const modal = document.getElementById("termsModal");
+  const links = document.querySelectorAll(".terms-section a");
+  const closeBtn = document.querySelector(".modal-close-btn");
+
+  if (modal) {
+    links.forEach(link => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        modal.style.display = "block";
+      });
+    });
+
+    closeBtn.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  }
 }); 

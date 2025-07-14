@@ -35,12 +35,12 @@
             <div class="plan-services-list">
               <div class="plan-services-header">
                 <h2 class="section-title">Servicios seleccionados</h2>
-                <a href="register-step4.html" class="btn-edit-services">Editar servicios</a>
+                <a href="register-step4.html" class="btn-edit-services"><i class="fas fa-pencil-alt"></i> Editar</a>
               </div>
               <!-- Servicios se insertarán aquí dinámicamente -->
             </div>
             <aside class="plan-summary">
-              <h2 class="section-title">Resumen</h2>
+              <h2 class="section-title">Resumen de costos</h2>
               <div class="summary-row">
                 <span>Subtotal</span>
                 <span id="summarySubtotal">$0.00</span>
@@ -63,6 +63,9 @@
               </div>
             </aside>
           </div>
+          <div class="terms-section">
+            <p>Al continuar, aceptas nuestros <a href="#" target="_blank">Términos y condiciones</a> y <a href="#" target="_blank">Política de privacidad</a>.</p>
+          </div>
           <div class="wizard-actions-row wizard-actions-two">
             <button type="button" class="btn btn-secondary" id="btnRegresar">Regresar</button>
             <button type="submit" class="btn btn-primary" id="btnContinuar">Continuar</button>
@@ -71,6 +74,17 @@
       </main>
     </div>
   </div>
+
+  <!-- Modal de Términos y Condiciones -->
+  <div id="termsModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close-btn">&times;</span>
+      <h2>Términos y Condiciones</h2>
+      <p>Aquí va el contenido completo de los términos y condiciones...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+  </div>
+
   <script src="js/register.js"></script>
 </body>
 </html>
