@@ -1173,7 +1173,7 @@ input[type="tel"] {
 }
 
 .terms-section a {
-  color: #4A5568;
+  color: var(--primary);
   text-decoration: none;
   cursor: pointer;
   font-weight: 500;
