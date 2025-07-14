@@ -3,8 +3,50 @@ document.addEventListener('DOMContentLoaded', function() {
   const mobileMenuToggle = document.getElementById('mobileMenuToggle');
   const mainTitle = document.getElementById('mainTitle');
   const contentArea = document.getElementById('contentArea');
-  const navLinks = document.querySelectorAll('.nav-link');
   const categoryLinks = document.querySelectorAll('.nav-category-link');
+
+  // --- DATA SIMULATION ---
+  // In a real application, this would come from the server
+  const availableModules = {
+    marketing: { name: "Módulo de Marketing", icon: "fa-bullhorn", slug: "marketing" },
+    facturacion: { name: "Módulo de Facturación", icon: "fa-file-invoice-dollar", slug: "billing" },
+    agenda: { name: "Módulo de Agenda", icon: "fa-calendar-alt", slug: "agenda" },
+    chatbot: { name: "Módulo de Chatbot", icon: "fa-comments", slug: "chatbot" },
+    reportes: { name: "Módulo de Reportes", icon: "fa-chart-line", slug: "reports" },
+    crm: { name: "Módulo de CRM", icon: "fa-users-cog", slug: "crm" },
+  };
+
+  const userEnabledModules = ["marketing", "facturacion", "reportes"]; // Example
+
+  function renderDynamicModules() {
+    const placeholder = document.getElementById('dynamic-modules-placeholder');
+    if (!placeholder) return;
+
+    const fragment = document.createDocumentFragment();
+
+    userEnabledModules.forEach(moduleKey => {
+      const moduleData = availableModules[moduleKey];
+      if (moduleData) {
+        const li = document.createElement('li');
+        li.className = 'nav-item';
+        li.innerHTML = `
+          <a href="#" class="nav-link" data-module="${moduleData.name}">
+            <i class="nav-icon fas ${moduleData.icon}"></i>
+            <span>${moduleData.name}</span>
+          </a>
+        `;
+        fragment.appendChild(li);
+      }
+    });
+
+    placeholder.after(fragment);
+  }
+
+  // Initial render of dynamic modules
+  renderDynamicModules();
+
+  // Re-select navLinks after dynamic creation
+  const navLinks = document.querySelectorAll('.nav-link');
 
   // Mobile menu toggle
   mobileMenuToggle.addEventListener('click', () => {
@@ -29,19 +71,21 @@ document.addEventListener('DOMContentLoaded', function() {
       const targetMenu = document.querySelector(targetId);
 
       if (targetMenu) {
-        targetMenu.classList.toggle('show');
         this.classList.toggle('collapsed');
+        if (targetMenu.style.maxHeight) {
+          targetMenu.style.maxHeight = null;
+        } else {
+          targetMenu.style.maxHeight = targetMenu.scrollHeight + "px";
+        }
       }
     });
   });
 
-  // Handle navigation clicks
-  navLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
+  function handleNavLinkClick(e) {
       e.preventDefault();
 
       // Deactivate all links
-      navLinks.forEach(nav => nav.classList.remove('active'));
+      document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
 
       // Activate the clicked link
       this.classList.add('active');
@@ -65,23 +109,38 @@ document.addEventListener('DOMContentLoaded', function() {
       if (window.innerWidth <= 768) {
         sidebar.classList.remove('open');
       }
-    });
+  }
+
+  // Attach event listeners to all nav links (static and dynamic)
+  document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', handleNavLinkClick);
   });
 
-  // Set initial active link
+
+  // Set initial active link and content
   const firstLink = document.querySelector('.nav-menu .nav-item .nav-link');
   if(firstLink) {
     firstLink.classList.add('active');
-    mainTitle.textContent = firstLink.dataset.module || 'Bienvenido a Genesix';
+    const initialModuleName = firstLink.dataset.module || 'Bienvenido a Genesix';
+    mainTitle.textContent = initialModuleName;
     contentArea.innerHTML = `
       <div class="card">
         <div class="card-header">
-          <h2>${firstLink.dataset.module || 'Bienvenido'}</h2>
+          <h2>${initialModuleName}</h2>
         </div>
         <div class="card-body">
-          <p>Contenido para ${firstLink.dataset.module || 'el módulo de bienvenida'} irá aquí.</p>
+          <p>Contenido para ${initialModuleName} irá aquí.</p>
         </div>
       </div>
     `;
   }
+  
+  // Initialize collapsible menus
+  document.querySelectorAll('.nav-submenu.collapse:not(.show)').forEach(menu => {
+      menu.style.maxHeight = '0px';
+  });
+   document.querySelectorAll('.nav-submenu.collapse.show').forEach(menu => {
+      menu.style.maxHeight = menu.scrollHeight + 'px';
+  });
+
 });
