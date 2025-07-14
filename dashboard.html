@@ -57,10 +57,19 @@
               <i class="fas fa-chevron-down category-arrow"></i>
             </a>
             <ul class="nav-submenu collapse" id="tenant-menu">
-              <li class="nav-category">Módulo del tenant</li>
-          <li class="nav-item"><a href="#" class="nav-link" data-module="Mi cuenta"><i class="nav-icon fas fa-user-circle"></i><span>Mi cuenta</span></a></li>
-          <li class="nav-item"><a href="#" class="nav-link" data-module="Administrar usuarios tenants"><i class="nav-icon fas fa-users"></i><span>Usuarios del tenant</span></a></li>
-          <li id="dynamic-modules-placeholder" style="display: none;"></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Mi cuenta"><i class="nav-icon fas fa-user-circle"></i><span>Mi cuenta</span></a></li>
+              <li class="nav-item">
+                <a href="#" class="nav-link nav-category-link" data-toggle="collapse" data-target="#tenant-services-menu">
+                  <i class="nav-icon fas fa-layer-group"></i>
+                  <span>Servicios</span>
+                  <i class="fas fa-chevron-down category-arrow"></i>
+                </a>
+                <ul class="nav-submenu collapse" id="tenant-services-menu">
+                  <li class="nav-item"><a href="#" class="nav-link" data-module="Agente de Marketing"><i class="nav-icon fas fa-bullhorn"></i><span>Agente de Marketing</span></a></li>
+                  <li class="nav-item"><a href="#" class="nav-link" data-module="Agente de Facturación"><i class="nav-icon fas fa-file-invoice-dollar"></i><span>Agente de Facturación</span></a></li>
+                  <!-- Aquí se pueden añadir más agentes dinámicamente -->
+                </ul>
+              </li>
             </ul>
           </li>
         </ul>
