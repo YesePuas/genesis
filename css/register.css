@@ -1183,6 +1183,46 @@ input[type="tel"] {
   text-decoration: underline;
 }
 
+
+.info-card {
+  background: #F7FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.info-card-icon {
+  flex-shrink: 0;
+  color: var(--primary);
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.info-card-content {
+  flex-grow: 1;
+}
+
+.info-card-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text-main);
+  margin: 0 0 0.25rem 0;
+}
+
+.info-card-text {
+  font-size: 0.95rem;
+  color: #4A5568;
+  margin: 0;
+  line-height: 1.5;
+}
+
+
 /* Modal Styles */
 .modal {
   display: none;

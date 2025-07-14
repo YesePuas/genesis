@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Estado del wizard
   let currentStep = 0;
-  let stepsCompleted = [false, false, false, false, false, false];
+  let stepsCompleted = [false, false, false, false, false];
 
   // Inicializar barra de pasos
   function renderSteps() {
@@ -446,10 +446,10 @@ document.addEventListener('DOMContentLoaded', function () {
     window.location.href = 'register-step4.html';
   };
 
-  document.getElementById('btnContinuar').onclick = function (e) {
+  document.getElementById('btnFinalizar').onclick = function (e) {
     e.preventDefault();
-    // Aquí iría la lógica para guardar el plan y continuar
-    window.location.href = 'register-step6.html';
+    // Aquí iría la lógica para guardar el plan y finalizar el registro.
+    window.location.href = 'register-complete.html';
   };
 
   renderServices();
