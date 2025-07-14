@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Genesix</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="dashboard-layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a href="#" class="sidebar-logo">
+          <i class="fas fa-hexagon logo-icon"></i>
+          <span class="logo-text">Genesix</span>
+        </a>
+      </div>
+      <nav class="sidebar-nav">
+        <ul class="nav-menu">
+          <li class="nav-category-item">
+            <a href="#" class="nav-category-link" data-toggle="collapse" data-target="#admin-menu">
+              <span>Administración</span>
+              <i class="fas fa-chevron-down category-arrow"></i>
+            </a>
+            <ul class="nav-submenu collapse show" id="admin-menu">
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Administrar usuarios"><i class="nav-icon fas fa-users-cog"></i><span>Administrar usuarios</span></a></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Administrar parámetros funcionales"><i class="nav-icon fas fa-sliders-h"></i><span>Parámetros funcionales</span></a></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Administrar parámetros HTML"><i class="nav-icon fas fa-code"></i><span>Parámetros HTML</span></a></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Administrar departamentos"><i class="nav-icon fas fa-map-marked-alt"></i><span>Departamentos</span></a></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Administrar municipios"><i class="nav-icon fas fa-map-pin"></i><span>Municipios</span></a></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Aprobación tenant"><i class="nav-icon fas fa-check-circle"></i><span>Aprobación tenant</span></a></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Administrar tenants"><i class="nav-icon fas fa-building"></i><span>Administrar tenants</span></a></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Administrar términos y condiciones"><i class="nav-icon fas fa-file-contract"></i><span>Términos y condiciones</span></a></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Administrar políticas de privacidad"><i class="nav-icon fas fa-user-shield"></i><span>Políticas de privacidad</span></a></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Solicitudes, quejas y reclamos"><i class="nav-icon fas fa-headset"></i><span>Solicitudes y quejas</span></a></li>
+            </ul>
+          </li>
+
+          <li class="nav-category-item">
+            <a href="#" class="nav-category-link" data-toggle="collapse" data-target="#billing-menu">
+              <span>Facturación / Pagos</span>
+              <i class="fas fa-chevron-down category-arrow"></i>
+            </a>
+            <ul class="nav-submenu collapse" id="billing-menu">
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Gestionar facturación"><i class="nav-icon fas fa-file-invoice-dollar"></i><span>Gestionar facturación</span></a></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Gestionar pagos"><i class="nav-icon fas fa-credit-card"></i><span>Gestionar pagos</span></a></li>
+            </ul>
+          </li>
+
+          <li class="nav-category-item">
+            <a href="#" class="nav-category-link" data-toggle="collapse" data-target="#tenant-menu">
+              <span>Módulo del tenant</span>
+              <i class="fas fa-chevron-down category-arrow"></i>
+            </a>
+            <ul class="nav-submenu collapse" id="tenant-menu">
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Mi cuenta"><i class="nav-icon fas fa-user-circle"></i><span>Mi cuenta</span></a></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Administrar usuarios tenants"><i class="nav-icon fas fa-users"></i><span>Usuarios del tenant</span></a></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Gestionar módulos"><i class="nav-icon fas fa-th-large"></i><span>Gestionar módulos</span></a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="login.html" class="nav-link logout-link">
+          <i class="nav-icon fas fa-sign-out-alt"></i>
+          <span>Cerrar sesión</span>
+        </a>
+      </div>
+    </aside>
+
+    <div class="main-content-wrapper">
+      <header class="main-header">
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+          <i class="fas fa-bars"></i>
+        </button>
+        <h1 class="main-title" id="mainTitle">Bienvenido a Genesix</h1>
+      </header>
+      <main class="content-area" id="contentArea">
+        <div class="content-placeholder">
+          <div class="card quick-stats-card">
+            <div class="card-header">
+              <h2>Vista Rápida</h2>
+            </div>
+            <div class="card-body">
+              <p>Aquí se mostrarán estadísticas clave o recordatorios importantes.</p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

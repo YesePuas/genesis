@@ -449,7 +449,7 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('btnFinalizar').onclick = function (e) {
     e.preventDefault();
     // Aquí iría la lógica para guardar el plan y finalizar el registro.
-    window.location.href = 'register-complete.html';
+    window.location.href = 'dashboard.html';
   };
 
   renderServices();
