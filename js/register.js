@@ -247,4 +247,74 @@ style.textContent = `
     background: #fff0f0 !important;
   }
 `;
-document.head.appendChild(style); 
+document.head.appendChild(style);
+
+// ========== LÓGICA PASO 3: INFORMACIÓN DE LA EMPRESA ==========
+document.addEventListener('DOMContentLoaded', function () {
+  if (document.body.getAttribute('data-step') !== '3') return;
+
+  const form = document.getElementById('empresaForm');
+  const btnContinuar = document.getElementById('btnContinuar');
+  
+  const requiredFields = [
+    'nombreEmpresa',
+    'nitEmpresa',
+    'direccionEmpresa',
+    'departamentoEmpresa',
+    'ciudadEmpresa',
+    'telefonoEmpresa'
+  ];
+
+  let formSubmitted = false;
+
+  function validateField(id) {
+    const el = document.getElementById(id);
+    if (!el) return true;
+
+    if (formSubmitted && !el.value.trim()) {
+      el.classList.add('input-error');
+      return false;
+    } else {
+      el.classList.remove('input-error');
+      return true;
+    }
+  }
+
+  function checkFormValidity() {
+    let allValid = true;
+    requiredFields.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el || !el.value.trim()) {
+        allValid = false;
+      }
+      if (formSubmitted) {
+        validateField(id);
+      }
+    });
+
+    btnContinuar.disabled = !allValid;
+    btnContinuar.classList.toggle('btn-disabled', !allValid);
+    btnContinuar.classList.toggle('btn-primary', allValid);
+  }
+
+  form.addEventListener('input', checkFormValidity);
+  form.addEventListener('change', checkFormValidity);
+
+  document.getElementById('btnRegresar').onclick = function () {
+    window.location.href = 'register-step2.html';
+  };
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    formSubmitted = true;
+    
+    checkFormValidity();
+
+    if (!btnContinuar.disabled) {
+      console.log('Formulario válido, continuando al siguiente paso.');
+      window.location.href = 'register-step4.html';
+    }
+  });
+
+  checkFormValidity();
+}); 
