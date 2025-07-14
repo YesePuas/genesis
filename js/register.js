@@ -317,4 +317,48 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   checkFormValidity();
+});
+
+// ========== LÓGICA PASO 4: SELECCIÓN DE SERVICIOS ==========
+document.addEventListener('DOMContentLoaded', function () {
+  if (document.body.getAttribute('data-step') !== '4') return;
+
+  const form = document.getElementById('serviciosForm');
+  const btnContinuar = document.getElementById('btnContinuar');
+  const serviceCards = form.querySelectorAll('.service-card');
+
+  function checkSelection() {
+    const selectedServices = form.querySelectorAll('input[name="servicios"]:checked').length;
+    if (selectedServices > 0) {
+      btnContinuar.disabled = false;
+      btnContinuar.classList.remove('btn-disabled');
+      btnContinuar.classList.add('btn-primary');
+    } else {
+      btnContinuar.disabled = true;
+      btnContinuar.classList.add('btn-disabled');
+      btnContinuar.classList.remove('btn-primary');
+    }
+  }
+
+  serviceCards.forEach(card => {
+    card.addEventListener('click', function () {
+      const checkbox = this.querySelector('input[type="checkbox"]');
+      checkbox.checked = !checkbox.checked;
+      this.classList.toggle('selected', checkbox.checked);
+      checkSelection();
+    });
+  });
+
+  document.getElementById('btnRegresar').onclick = function () {
+    window.location.href = 'register-step3.html';
+  };
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!btnContinuar.disabled) {
+      window.location.href = 'register-step5.html';
+    }
+  });
+
+  checkSelection();
 }); 
