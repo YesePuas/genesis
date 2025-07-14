@@ -1001,4 +1001,101 @@ input[type="tel"] {
   .services-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* ========== ESTILOS PASO 5: RESUMEN DEL PLAN ========== */
+.plan-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  width: 100%;
+}
+
+.plan-services-list {
+  /* Estilos para la lista de servicios */
+}
+
+.plan-services-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.btn-edit-services {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.btn-edit-services:hover {
+  color: var(--primary-dark);
+}
+
+.plan-summary {
+  background: #f7f9fb;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.summary-row, .summary-total {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.summary-total {
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.coupon-section {
+  margin-top: 1.5rem;
+}
+
+.coupon-input-group {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.coupon-input-group input {
+  flex-grow: 1;
+}
+
+.btn-apply-coupon {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-apply-coupon:hover {
+  background: var(--primary-dark);
+}
+
+#couponMessage {
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 900px) {
+  .plan-layout {
+    grid-template-columns: 1fr;
+  }
 } 

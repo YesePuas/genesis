@@ -361,4 +361,79 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   checkSelection();
+});
+
+// ========== LÓGICA PASO 5: RESUMEN DEL PLAN ==========
+document.addEventListener('DOMContentLoaded', function () {
+  if (document.body.getAttribute('data-step') !== '5') return;
+
+  const services = {
+    marketing: { name: "Marketing Inteligente", price: 25, icon: "fa-bullhorn" },
+    facturacion: { name: "Facturación Electrónica", price: 20, icon: "fa-file-invoice-dollar" },
+    agenda: { name: "Agenda y Recordatorios", price: 15, icon: "fa-calendar-alt" },
+    chatbot: { name: "Chatbot Multicanal", price: 30, icon: "fa-comments" },
+    reportes: { name: "Reportes de Productividad", price: 35, icon: "fa-chart-line" },
+    crm: { name: "CRM Inteligente", price: 40, icon: "fa-users-cog" },
+  };
+
+  const selectedServices = JSON.parse(localStorage.getItem('selectedServices')) || ["marketing", "facturacion"];
+  const servicesListContainer = document.querySelector(".plan-services-list");
+  const subtotalEl = document.getElementById("summarySubtotal");
+  const impuestosEl = document.getElementById("summaryImpuestos");
+  const totalEl = document.getElementById("summaryTotal");
+  const couponInput = document.getElementById("couponCode");
+  const applyCouponBtn = document.getElementById("btnAplicarCupon");
+  const couponMessageEl = document.getElementById("couponMessage");
+
+  function renderServices() {
+    let subtotal = 0;
+    selectedServices.forEach(serviceKey => {
+      const service = services[serviceKey];
+      subtotal += service.price;
+      const serviceElement = document.createElement("div");
+      serviceElement.classList.add("service-item");
+      serviceElement.innerHTML = `
+        <div class="service-item-icon"><i class="fas ${service.icon}"></i></div>
+        <div class="service-item-details">
+          <div class="service-item-name">${service.name}</div>
+          <div class="service-item-description">Descripción breve del servicio.</div>
+        </div>
+        <div class="service-item-price">${service.price}/mes</div>
+      `;
+      servicesListContainer.appendChild(serviceElement);
+    });
+    updateSummary(subtotal);
+  }
+
+  function updateSummary(subtotal, discount = 0) {
+    const impuestos = subtotal * 0.19;
+    const total = subtotal + impuestos - discount;
+    subtotalEl.textContent = `${subtotal.toFixed(2)}`;
+    impuestosEl.textContent = `${impuestos.toFixed(2)}`;
+    totalEl.textContent = `${total.toFixed(2)}`;
+  }
+
+  applyCouponBtn.addEventListener("click", () => {
+    const couponCode = couponInput.value.trim().toUpperCase();
+    if (couponCode === "DESCUENTO20") {
+      const subtotal = selectedServices.reduce((acc, key) => acc + services[key].price, 0);
+      const discount = subtotal * 0.20;
+      updateSummary(subtotal, discount);
+      couponMessageEl.textContent = "Cupón aplicado con éxito!";
+      couponMessageEl.style.color = "green";
+    } else {
+      couponMessageEl.textContent = "Cupón no válido";
+      couponMessageEl.style.color = "red";
+    }
+  });
+
+  document.getElementById('btnRegresar').onclick = function () {
+    window.location.href = 'register-step4.html';
+  };
+
+  document.getElementById('btnContinuar').onclick = function () {
+    window.location.href = 'register-step6.html';
+  };
+
+  renderServices();
 }); 

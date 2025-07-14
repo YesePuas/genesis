@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro Empresarial - Paso 5 | Janus IA</title>
+  <link rel="stylesheet" href="css/register.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body data-step="5">
+  <div class="wizard-bg">
+    <div class="register-container">
+      <header class="wizard-header">
+        <nav class="wizard-steps" aria-label="Progreso del registro">
+          <ol class="wizard-steps-list" id="wizardStepper">
+            <li class="wizard-step"><span class="wizard-step-icon">1</span><span class="wizard-step-label">Tus datos</span></li>
+            <li class="wizard-step"><span class="wizard-step-icon">2</span><span class="wizard-step-label">Verifica tu correo</span></li>
+            <li class="wizard-step"><span class="wizard-step-icon">3</span><span class="wizard-step-label">Empresa</span></li>
+            <li class="wizard-step"><span class="wizard-step-icon">4</span><span class="wizard-step-label">Servicios</span></li>
+            <li class="wizard-step"><span class="wizard-step-icon">5</span><span class="wizard-step-label">Plan</span></li>
+            <li class="wizard-step"><span class="wizard-step-icon">6</span><span class="wizard-step-label">Usuarios</span></li>
+          </ol>
+        </nav>
+      </header>
+      <main class="wizard-main">
+        <section class="wizard-card">
+          <div class="wizard-header-row">
+            <h1 class="wizard-title">Resumen de tu plan</h1>
+            <a href="index.html" class="wizard-cancel-link" title="Cancelar y volver al inicio">Cancelar</a>
+          </div>
+          <div class="plan-layout">
+            <div class="plan-services-list">
+              <div class="plan-services-header">
+                <h2 class="section-title">Servicios seleccionados</h2>
+                <a href="register-step4.html" class="btn-edit-services">Editar servicios</a>
+              </div>
+              <!-- Servicios se insertarán aquí dinámicamente -->
+            </div>
+            <aside class="plan-summary">
+              <h2 class="section-title">Resumen</h2>
+              <div class="summary-row">
+                <span>Subtotal</span>
+                <span id="summarySubtotal">$0.00</span>
+              </div>
+              <div class="summary-row">
+                <span>Impuestos (19%)</span>
+                <span id="summaryImpuestos">$0.00</span>
+              </div>
+              <div class="coupon-section">
+                <label for="couponCode">¿Tienes un cupón?</label>
+                <div class="coupon-input-group">
+                  <input type="text" id="couponCode" placeholder="Escribe tu código">
+                  <button class="btn btn-apply-coupon" id="btnAplicarCupon">Aplicar</button>
+                </div>
+                <div id="couponMessage"></div>
+              </div>
+              <div class="summary-total">
+                <span>Total mensual</span>
+                <span id="summaryTotal">$0.00</span>
+              </div>
+            </aside>
+          </div>
+          <div class="wizard-actions-row wizard-actions-two">
+            <button type="button" class="btn btn-secondary" id="btnRegresar">Regresar</button>
+            <button type="submit" class="btn btn-primary" id="btnContinuar">Continuar</button>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="js/register.js"></script>
+</body>
+</html>
