@@ -455,28 +455,54 @@ document.addEventListener('DOMContentLoaded', function () {
   renderServices();
 });
 
-// ========== LÓGICA MODAL DE TÉRMINOS Y CONDICIONES ==========
+// ========== LÓGICA MODAL DE TÉRMINOS Y POLÍTICA DE PRIVACIDAD ==========
 document.addEventListener('DOMContentLoaded', function () {
-  const modal = document.getElementById("termsModal");
-  const links = document.querySelectorAll(".terms-section a");
-  const closeBtn = document.querySelector(".modal-close-btn");
+  // Modal para Términos y Condiciones
+  const termsModal = document.getElementById("termsModal");
+  const openTermsBtn = document.getElementById("openTermsModal");
+  const closeTermsBtn = termsModal ? termsModal.querySelector(".modal-close-btn") : null;
 
-  if (modal) {
-    links.forEach(link => {
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-        modal.style.display = "block";
-      });
-    });
+  // Modal para Política de Privacidad
+  const privacyModal = document.getElementById("privacyModal");
+  const openPrivacyBtn = document.getElementById("openPrivacyModal");
+  const closePrivacyBtn = privacyModal ? privacyModal.querySelector(".modal-close-btn") : null;
 
-    closeBtn.onclick = function() {
-      modal.style.display = "none";
+  const openModal = (modal) => {
+    if (modal) modal.style.display = "block";
+  };
+
+  const closeModal = (modal) => {
+    if (modal) modal.style.display = "none";
+  };
+
+  if (openTermsBtn) {
+    openTermsBtn.onclick = (e) => {
+      e.preventDefault();
+      openModal(termsModal);
+    };
+  }
+
+  if (openPrivacyBtn) {
+    openPrivacyBtn.onclick = (e) => {
+      e.preventDefault();
+      openModal(privacyModal);
+    };
+  }
+
+  if (closeTermsBtn) {
+    closeTermsBtn.onclick = () => closeModal(termsModal);
+  }
+
+  if (closePrivacyBtn) {
+    closePrivacyBtn.onclick = () => closeModal(privacyModal);
+  }
+
+  window.onclick = function(event) {
+    if (event.target == termsModal) {
+      closeModal(termsModal);
     }
-
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
+    if (event.target == privacyModal) {
+      closeModal(privacyModal);
     }
   }
 }); 
