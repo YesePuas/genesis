@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function() {
   const sidebar = document.getElementById('sidebar');
   const mobileMenuToggle = document.getElementById('mobileMenuToggle');
@@ -32,12 +33,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
       if (targetMenu) {
         const isShown = targetMenu.classList.contains('show');
-        
-        // Toggle classes for arrow and visibility
         this.classList.toggle('open', !isShown);
         targetMenu.classList.toggle('show', !isShown);
-
-        // Animate with max-height
         if (!isShown) {
           targetMenu.style.maxHeight = targetMenu.scrollHeight + 'px';
         } else {
@@ -47,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Initialize menus on load to set correct initial state
+  // Initialize menus on load
   document.querySelectorAll('.nav-submenu.collapse').forEach(menu => {
     const link = document.querySelector(`[data-target="#${menu.id}"]`);
     if (menu.classList.contains('show')) {
@@ -59,12 +56,25 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // --- Handle content loading ---
-  function handleNavLinkClick(e) {
-    // Do not handle click if it's a dropdown toggle
-    if (this.dataset.toggle === 'collapse') {
-      return;
+  // --- Content Loading Logic ---
+  function loadModuleContent(moduleName, targetElement) {
+    targetElement.innerHTML = ''; // Clear previous content
+    mainTitle.textContent = moduleName;
+
+    if (moduleName === 'Dashboard') {
+      if (typeof dashboardViewHTML !== 'undefined') {
+        targetElement.innerHTML = dashboardViewHTML;
+      } else {
+        console.error('Error: La variable dashboardViewHTML no está definida.');
+        targetElement.innerHTML = `<div class="card"><div class="card-body"><p>Error al cargar el módulo del dashboard.</p></div></div>`;
+      }
+    } else {
+      targetElement.innerHTML = `<div class="card"><div class="card-header"><h2>${moduleName}</h2></div><div class="card-body"><p>Contenido para ${moduleName} irá aquí.</p></div></div>`;
     }
+  }
+
+  function handleNavLinkClick(e) {
+    if (this.dataset.toggle === 'collapse') return;
     e.preventDefault();
 
     document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
@@ -72,8 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const moduleName = this.dataset.module;
     if (moduleName) {
-      mainTitle.textContent = moduleName;
-      contentArea.innerHTML = `<div class="card"><div class="card-header"><h2>${moduleName}</h2></div><div class="card-body"><p>Contenido para ${moduleName} irá aquí.</p></div></div>`;
+      loadModuleContent(moduleName, contentArea);
     }
 
     if (window.innerWidth <= 768 && sidebar.classList.contains('open')) {
@@ -85,12 +94,11 @@ document.addEventListener('DOMContentLoaded', function() {
     link.addEventListener('click', handleNavLinkClick);
   });
 
-  // Set initial active link and content
+  // --- Set Initial Page State ---
   const firstLink = document.querySelector('.nav-menu .nav-item .nav-link:not(.nav-category-link)');
   if (firstLink) {
     firstLink.classList.add('active');
     const initialModuleName = firstLink.dataset.module || 'Bienvenido a Genesix';
-    mainTitle.textContent = initialModuleName;
-    contentArea.innerHTML = `<div class="card"><div class="card-header"><h2>${initialModuleName}</h2></div><div class="card-body"><p>Contenido para ${initialModuleName} irá aquí.</p></div></div>`;
+    loadModuleContent(initialModuleName, contentArea);
   }
 });
