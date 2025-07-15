@@ -1,0 +1,122 @@
+
+:root {
+    /* Inspired by Tailwind CSS Palette */
+    --color-primary: #3b82f6; /* blue-500 */
+    --color-primary-hover: #2563eb; /* blue-600 */
+    --color-sidebar-bg: #1e293b; /* slate-800 */
+    --color-sidebar-text: #cbd5e1; /* slate-300 */
+    --color-sidebar-text-hover: #ffffff;
+    --color-sidebar-active-bg: #3b82f6;
+    --color-content-bg: #f9fafb; /* gray-50 */
+    --color-card-bg: #ffffff;
+    --color-text-main: #1f2937; /* gray-800 */
+    --color-text-muted: #6b7280; /* gray-500 */
+    --color-border: #e5e7eb; /* gray-200 */
+
+    /* Status Colors */
+    --color-yellow-bg: #fef9c3; /* yellow-100 */
+    --color-yellow-text: #854d0e; /* yellow-700 */
+    --color-green-bg: #dcfce7; /* green-100 */
+    --color-green-text: #15803d; /* green-700 */
+    --color-red-bg: #fee2e2; /* red-100 */
+    --color-red-text: #b91c1c; /* red-700 */
+    --color-blue-bg: #dbeafe; /* blue-100 */
+    --color-blue-text: #1d4ed8; /* blue-700 */
+
+    /* UI Elements */
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    --radius-lg: 0.5rem; /* 8px */
+    --font-sans: 'Inter', sans-serif;
+}
+
+/* Overriding default styles with modern look */
+
+body {
+    background-color: var(--color-content-bg);
+    color: var(--color-text-main);
+    font-family: var(--font-sans);
+}
+
+.sidebar {
+    background-color: var(--color-sidebar-bg);
+    color: var(--color-sidebar-text);
+}
+
+.sidebar-logo .logo-text {
+    color: var(--color-sidebar-text-hover);
+}
+
+.sidebar-logo .logo-icon {
+    color: var(--color-primary);
+}
+
+.nav-category-link {
+    color: #94a3b8; /* slate-400 */
+    font-weight: 600;
+}
+
+.nav-link {
+    color: var(--color-sidebar-text);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-link:hover {
+    background-color: var(--color-primary-hover);
+    color: var(--color-sidebar-text-hover);
+}
+
+.nav-link:hover .nav-icon {
+    color: var(--color-sidebar-text-hover);
+}
+
+.nav-link.active {
+    background-color: var(--color-sidebar-active-bg);
+    color: #ffffff;
+}
+
+.nav-link.active .nav-icon {
+    color: #ffffff;
+}
+
+.main-header {
+    background-color: var(--color-card-bg);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: var(--shadow-md);
+}
+
+.card {
+    background-color: var(--color-card-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--color-border);
+}
+
+/* Status Pills for tables or lists */
+.status-pill {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.status-pendiente { background-color: var(--color-yellow-bg); color: var(--color-yellow-text); }
+.status-aprobada, .status-completada { background-color: var(--color-green-bg); color: var(--color-green-text); }
+.status-rechazada { background-color: var(--color-red-bg); color: var(--color-red-text); }
+.status-en-progreso { background-color: var(--color-blue-bg); color: var(--color-blue-text); }
+
+/* Modern Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #e5e7eb; /* gray-200 */
+}
+::-webkit-scrollbar-thumb {
+    background: #9ca3af; /* gray-400 */
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #6b7280; /* gray-500 */
+}
