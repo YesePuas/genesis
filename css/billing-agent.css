@@ -7,6 +7,7 @@
 /* Flex utilities */
 .flex { display: flex; }
 .justify-between { justify-content: space-between; }
+.justify-right { justify-content: right;}
 .items-center { align-items: center; }
 .space-x-4 > * + * { margin-left: 1rem; }
 
