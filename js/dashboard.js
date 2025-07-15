@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function() {
   const sidebar = document.getElementById('sidebar');
   const mobileMenuToggle = document.getElementById('mobileMenuToggle');
@@ -65,8 +64,26 @@ document.addEventListener('DOMContentLoaded', function() {
       if (typeof dashboardViewHTML !== 'undefined') {
         targetElement.innerHTML = dashboardViewHTML;
       } else {
-        console.error('Error: La variable dashboardViewHTML no está definida.');
-        targetElement.innerHTML = `<div class="card"><div class="card-body"><p>Error al cargar el módulo del dashboard.</p></div></div>`;
+        targetElement.innerHTML = `
+          <div class="content-placeholder">
+            <div class="card quick-stats-card">
+              <div class="card-header">
+                <h2>Vista Rápida</h2>
+              </div>
+              <div class="card-body">
+                <p>Aquí se mostrarán estadísticas clave o recordatorios importantes.</p>
+              </div>
+            </div>
+          </div>`;
+      }
+    } else if (moduleName === 'Agente de Facturación') {
+      const template = document.getElementById('billing-agent-template');
+      if (template) {
+        const clone = template.content.cloneNode(true);
+        targetElement.appendChild(clone);
+      } else {
+        console.error('Billing agent template not found!');
+        targetElement.innerHTML = `<div class="card"><div class="card-body"><p>Error: No se encontró la plantilla del Agente de Facturación.</p></div></div>`;
       }
     } else {
       targetElement.innerHTML = `<div class="card"><div class="card-header"><h2>${moduleName}</h2></div><div class="card-body"><p>Contenido para ${moduleName} irá aquí.</p></div></div>`;
