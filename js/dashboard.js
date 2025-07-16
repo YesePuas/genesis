@@ -77,15 +77,36 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>`;
       }
     } else if (moduleName === 'Agente de Facturación') {
-      const template = document.getElementById('billing-agent-template');
-      if (template) {
-        const clone = template.content.cloneNode(true);
-        targetElement.appendChild(clone);
+      if (typeof billingAgentViewHTML !== 'undefined') {
+        targetElement.innerHTML = billingAgentViewHTML;
       } else {
-        console.error('Billing agent template not found!');
-        targetElement.innerHTML = `<div class="card"><div class="card-body"><p>Error: No se encontró la plantilla del Agente de Facturación.</p></div></div>`;
+        targetElement.innerHTML = `
+          <div class="content-placeholder">
+            <div class="card quick-stats-card">
+              <div class="card-header">
+                <h2>Vista Rápida</h2>
+              </div>
+              <div class="card"><div class="card-body"><p>Error: No se encontró la plantilla del Agente de Facturación.</p></div></div>
+            </div>
+          </div>`;
       }
-    } else {
+    } 
+    else if (moduleName === 'Agente de Clientes') {
+      if (typeof clientAgentViewHTML !== 'undefined') {
+        targetElement.innerHTML = clientAgentViewHTML;
+      } else {
+        targetElement.innerHTML = `
+          <div class="content-placeholder">
+            <div class="card quick-stats-card">
+              <div class="card-header">
+                <h2>Vista Rápida</h2>
+              </div>
+              <div class="card"><div class="card-body"><p>Error: No se encontró la plantilla del Agente de Facturación.</p></div></div>
+            </div>
+          </div>`;
+      }
+    }
+    else {
       targetElement.innerHTML = `<div class="card"><div class="card-header"><h2>${moduleName}</h2></div><div class="card-body"><p>Contenido para ${moduleName} irá aquí.</p></div></div>`;
     }
   }
