@@ -213,12 +213,10 @@ const clientAgentViewHTML = ` <section id="client-agent" class="content-section"
 const marketingAgentViewHTML = `
 <div class="marketing-agent-container">
     <header class="module-header">
-        <h1 class="module-title">Agente de Marketing</h1>
         <button class="btn btn-primary" id="createPlanBtn">
             <i class="fas fa-plus"></i> Crear Nuevo Plan
         </button>
     </header>
-
     <section class="context-upload-section card">
         <div class="card-header">
             <h2>Contexto de Marca</h2>
@@ -235,16 +233,12 @@ const marketingAgentViewHTML = `
                 <span>PDF, Word, JPG, PNG</span>
                 <input type="file" id="fileUploader" multiple hidden>
             </div>
-            <div class="uploaded-files-preview" id="uploadedFilesPreview">
-                
-            </div>
+            <div class="uploaded-files-preview" id="uploadedFilesPreview"></div>
         </div>
     </section>
-
     <section class="marketing-plans-section">
         <h2 class="section-title">Planes de Marketing</h2>
         <div class="plans-grid" id="plansGrid">
-            <!-- Plan Card Example -->
             <div class="plan-card card">
                 <div class="card-body">
                     <h3 class="plan-name">Lanzamiento Producto X</h3>
@@ -253,7 +247,6 @@ const marketingAgentViewHTML = `
                     <a href="#" class="btn btn-secondary">Ver Posts Generados</a>
                 </div>
             </div>
-
             <div class="plan-card card">
                 <div class="card-body">
                     <h3 class="plan-name">Campaña Verano 2025</h3>
@@ -262,8 +255,6 @@ const marketingAgentViewHTML = `
                     <a href="#" class="btn btn-secondary">Ver Posts Generados</a>
                 </div>
             </div>
-
-            <!-- Add New Plan Card -->
             <div class="plan-card add-new-plan-card" id="addNewPlanCard">
                 <div class="card-body">
                     <div class="add-new-plan-content">
@@ -274,8 +265,6 @@ const marketingAgentViewHTML = `
             </div>
         </div>
     </section>
-
-    <!-- Plan Detail View (hidden by default) -->
     <section class="plan-detail-view-section" id="planDetailView" style="display: none;">
         <header class="plan-detail-header">
             <div>
@@ -284,7 +273,6 @@ const marketingAgentViewHTML = `
             </div>
             <button class="btn btn-primary" id="regeneratePostsBtn"><i class="fas fa-sync-alt"></i> Regenerar Posts</button>
         </header>
-
         <div class="posts-list card">
             <div class="card-body">
                 <div class="posts-table-header">
@@ -296,7 +284,6 @@ const marketingAgentViewHTML = `
                     <div class="header-item">Acciones</div>
                 </div>
                 <div class="posts-table-body" id="postsTableBody">
-                    <!-- Post Item Example 1 -->
                     <div class="post-item">
                         <div class="post-title">Anuncio del nuevo Producto X</div>
                         <div class="post-channel"><i class="fab fa-instagram" style="color: #E1306C;"></i> Instagram</div>
@@ -308,7 +295,6 @@ const marketingAgentViewHTML = `
                             <button class="btn-icon"><i class="fas fa-trash"></i></button>
                         </div>
                     </div>
-                    <!-- Post Item Example 2 -->
                     <div class="post-item">
                         <div class="post-title">Unboxing y primeras impresiones</div>
                         <div class="post-channel"><i class="fab fa-youtube" style="color: #FF0000;"></i> YouTube</div>
@@ -320,7 +306,6 @@ const marketingAgentViewHTML = `
                             <button class="btn-icon"><i class="fas fa-trash"></i></button>
                         </div>
                     </div>
-                     <!-- Post Item Example 3 -->
                      <div class="post-item">
                         <div class="post-title">Cómo el Producto X resuelve [problema]</div>
                         <div class="post-channel"><i class="fab fa-linkedin" style="color: #0A66C2;"></i> LinkedIn</div>
@@ -337,4 +322,28 @@ const marketingAgentViewHTML = `
         </div>
     </section>
 </div>
-`;
+<!-- Create Plan Modal -->
+<div id="createPlanModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content card">
+        <div class="modal-header">
+            <h2>Crear Nuevo Plan de Marketing</h2>
+            <button id="closeModalBtn" class="close-button">&times;</button>
+        </div>
+        <div class="modal-body">
+            <form id="createPlanForm">
+                <div class="form-group">
+                    <label for="planNameInput">Nombre del Plan</label>
+                    <input type="text" id="planNameInput" placeholder="Ej: Lanzamiento Q4" required>
+                </div>
+                <div class="form-group">
+                    <label for="planDescriptionInput">Descripción / Objetivo</label>
+                    <textarea id="planDescriptionInput" rows="4" placeholder="Ej: Aumentar las ventas del nuevo producto en un 15%..." required></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelModalBtn">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar Plan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>`;
