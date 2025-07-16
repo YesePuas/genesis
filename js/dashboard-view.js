@@ -244,7 +244,7 @@ const marketingAgentViewHTML = `
                     <h3 class="plan-name">Lanzamiento Producto X</h3>
                     <p class="plan-objective">Aumentar el conocimiento de marca para el nuevo Producto X en un 20%.</p>
                     <p class="plan-date">Creado: 15 Jul, 2025</p>
-                    <a href="#" class="btn btn-secondary">Ver Posts Generados</a>
+                    <a href="#" class="btn btn-secondary view-posts-btn">Ver Posts Generados</a>
                 </div>
             </div>
             <div class="plan-card card">
@@ -252,7 +252,7 @@ const marketingAgentViewHTML = `
                     <h3 class="plan-name">Campaña Verano 2025</h3>
                     <p class="plan-objective">Impulsar ventas de la colección de verano en la tienda online.</p>
                     <p class="plan-date">Creado: 10 Jul, 2025</p>
-                    <a href="#" class="btn btn-secondary">Ver Posts Generados</a>
+                    <a href="#" class="btn btn-secondary view-posts-btn">Ver Posts Generados</a>
                 </div>
             </div>
             <div class="plan-card add-new-plan-card" id="addNewPlanCard">
