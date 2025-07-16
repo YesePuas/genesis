@@ -209,3 +209,132 @@ const clientAgentViewHTML = ` <section id="client-agent" class="content-section"
         </div>
     </div>
 </section>`;
+
+const marketingAgentViewHTML = `
+<div class="marketing-agent-container">
+    <header class="module-header">
+        <h1 class="module-title">Agente de Marketing</h1>
+        <button class="btn btn-primary" id="createPlanBtn">
+            <i class="fas fa-plus"></i> Crear Nuevo Plan
+        </button>
+    </header>
+
+    <section class="context-upload-section card">
+        <div class="card-header">
+            <h2>Contexto de Marca</h2>
+        </div>
+        <div class="card-body">
+            <p class="upload-guidance">
+                Sube documentos clave para que tu agente entienda la identidad, tono y objetivos de tu marca.
+            </p>
+            <div class="file-upload-area">
+                <div class="file-upload-icon">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <p>Arrastra y suelta archivos aquí, o haz clic para seleccionar.</p>
+                <span>PDF, Word, JPG, PNG</span>
+                <input type="file" id="fileUploader" multiple hidden>
+            </div>
+            <div class="uploaded-files-preview" id="uploadedFilesPreview">
+                
+            </div>
+        </div>
+    </section>
+
+    <section class="marketing-plans-section">
+        <h2 class="section-title">Planes de Marketing</h2>
+        <div class="plans-grid" id="plansGrid">
+            <!-- Plan Card Example -->
+            <div class="plan-card card">
+                <div class="card-body">
+                    <h3 class="plan-name">Lanzamiento Producto X</h3>
+                    <p class="plan-objective">Aumentar el conocimiento de marca para el nuevo Producto X en un 20%.</p>
+                    <p class="plan-date">Creado: 15 Jul, 2025</p>
+                    <a href="#" class="btn btn-secondary">Ver Posts Generados</a>
+                </div>
+            </div>
+
+            <div class="plan-card card">
+                <div class="card-body">
+                    <h3 class="plan-name">Campaña Verano 2025</h3>
+                    <p class="plan-objective">Impulsar ventas de la colección de verano en la tienda online.</p>
+                    <p class="plan-date">Creado: 10 Jul, 2025</p>
+                    <a href="#" class="btn btn-secondary">Ver Posts Generados</a>
+                </div>
+            </div>
+
+            <!-- Add New Plan Card -->
+            <div class="plan-card add-new-plan-card" id="addNewPlanCard">
+                <div class="card-body">
+                    <div class="add-new-plan-content">
+                        <i class="fas fa-plus-circle"></i>
+                        <p>Crear Nuevo Plan</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plan Detail View (hidden by default) -->
+    <section class="plan-detail-view-section" id="planDetailView" style="display: none;">
+        <header class="plan-detail-header">
+            <div>
+                <button class="btn btn-secondary" id="backToPlansBtn"><i class="fas fa-arrow-left"></i> Volver a Planes</button>
+                <h2 class="section-title" id="planDetailTitle">Lanzamiento Producto X</h2>
+            </div>
+            <button class="btn btn-primary" id="regeneratePostsBtn"><i class="fas fa-sync-alt"></i> Regenerar Posts</button>
+        </header>
+
+        <div class="posts-list card">
+            <div class="card-body">
+                <div class="posts-table-header">
+                    <div class="header-item">Post</div>
+                    <div class="header-item">Canal</div>
+                    <div class="header-item">Tipo</div>
+                    <div class="header-item">Fecha Pub.</div>
+                    <div class="header-item">Estado</div>
+                    <div class="header-item">Acciones</div>
+                </div>
+                <div class="posts-table-body" id="postsTableBody">
+                    <!-- Post Item Example 1 -->
+                    <div class="post-item">
+                        <div class="post-title">Anuncio del nuevo Producto X</div>
+                        <div class="post-channel"><i class="fab fa-instagram" style="color: #E1306C;"></i> Instagram</div>
+                        <div class="post-type">Imagen</div>
+                        <div class="post-date">20 Jul, 2025</div>
+                        <div class="post-status"><span class="status-badge status-draft">Borrador</span></div>
+                        <div class="post-actions">
+                            <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                            <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                    <!-- Post Item Example 2 -->
+                    <div class="post-item">
+                        <div class="post-title">Unboxing y primeras impresiones</div>
+                        <div class="post-channel"><i class="fab fa-youtube" style="color: #FF0000;"></i> YouTube</div>
+                        <div class="post-type">Video</div>
+                        <div class="post-date">22 Jul, 2025</div>
+                        <div class="post-status"><span class="status-badge status-approved">Aprobado</span></div>
+                        <div class="post-actions">
+                            <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                            <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                     <!-- Post Item Example 3 -->
+                     <div class="post-item">
+                        <div class="post-title">Cómo el Producto X resuelve [problema]</div>
+                        <div class="post-channel"><i class="fab fa-linkedin" style="color: #0A66C2;"></i> LinkedIn</div>
+                        <div class="post-type">Artículo</div>
+                        <div class="post-date">25 Jul, 2025</div>
+                        <div class="post-status"><span class="status-badge status-scheduled">Programado</span></div>
+                        <div class="post-actions">
+                            <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                            <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+`;

@@ -1,0 +1,262 @@
+/* marketing-agent.css */
+
+.marketing-agent-container {
+    padding: 2rem;
+}
+
+.module-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.module-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+}
+
+.context-upload-section {
+    margin-bottom: 2rem;
+}
+
+.upload-guidance {
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.file-upload-area {
+    border: 2px dashed var(--border-color);
+    border-radius: var(--radius);
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    background-color: #f9fafb;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.file-upload-area:hover {
+    background-color: #f3f4f6;
+    border-color: var(--primary);
+}
+
+.file-upload-icon {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.file-upload-area p {
+    margin: 0 0 0.5rem 0;
+    font-weight: 600;
+}
+
+.file-upload-area span {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.section-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 1.5rem;
+}
+
+.plans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.plan-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.plan-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.plan-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.plan-objective {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    min-height: 50px;
+}
+
+.plan-date {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary);
+    color: #fff;
+}
+
+.add-new-plan-card {
+    cursor: pointer;
+    border: 2px dashed var(--border-color);
+    background-color: transparent;
+}
+
+.add-new-plan-card .card-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.add-new-plan-content {
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.add-new-plan-content i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.add-new-plan-content p {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--primary);
+}
+
+/* Plan Detail View */
+.plan-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.plan-detail-header div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#planDetailTitle {
+    margin-bottom: 0;
+}
+
+.posts-list .card-body {
+    padding: 0;
+}
+
+.posts-table-header,
+.post-item {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.posts-table-header {
+    font-weight: 600;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+}
+
+.post-item:last-child {
+    border-bottom: none;
+}
+
+.post-title {
+    font-weight: 600;
+}
+
+.post-channel i {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+}
+
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-align: center;
+    display: inline-block;
+}
+
+.status-draft {
+    background-color: #e5e7eb;
+    color: #4b5563;
+}
+
+.status-approved {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.status-scheduled {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.post-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+}
+
+.btn-icon:hover {
+    color: var(--text-main);
+    background-color: #f3f4f6;
+} 

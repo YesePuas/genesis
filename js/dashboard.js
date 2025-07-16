@@ -57,54 +57,47 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // --- Content Loading Logic ---
   function loadModuleContent(moduleName, targetElement) {
-    targetElement.innerHTML = ''; // Clear previous content
+    targetElement.innerHTML = '<div class="loading-spinner"></div>'; // Show a spinner
     mainTitle.textContent = moduleName;
+
+    // Remove old module-specific scripts to avoid conflicts
+    const oldScripts = document.querySelectorAll('[data-module-script]');
+    oldScripts.forEach(script => script.remove());
 
     if (moduleName === 'Dashboard') {
       if (typeof dashboardViewHTML !== 'undefined') {
         targetElement.innerHTML = dashboardViewHTML;
       } else {
-        targetElement.innerHTML = `
-          <div class="content-placeholder">
-            <div class="card quick-stats-card">
-              <div class="card-header">
-                <h2>Vista Rápida</h2>
-              </div>
-              <div class="card-body">
-                <p>Aquí se mostrarán estadísticas clave o recordatorios importantes.</p>
-              </div>
-            </div>
-          </div>`;
+        // Fallback
       }
     } else if (moduleName === 'Agente de Facturación') {
       if (typeof billingAgentViewHTML !== 'undefined') {
         targetElement.innerHTML = billingAgentViewHTML;
       } else {
-        targetElement.innerHTML = `
-          <div class="content-placeholder">
-            <div class="card quick-stats-card">
-              <div class="card-header">
-                <h2>Vista Rápida</h2>
-              </div>
-              <div class="card"><div class="card-body"><p>Error: No se encontró la plantilla del Agente de Facturación.</p></div></div>
-            </div>
-          </div>`;
+        // Fallback
       }
-    } 
-    else if (moduleName === 'Agente de Clientes') {
+    } else if (moduleName === 'Agente de Clientes') {
       if (typeof clientAgentViewHTML !== 'undefined') {
         targetElement.innerHTML = clientAgentViewHTML;
       } else {
-        targetElement.innerHTML = `
-          <div class="content-placeholder">
-            <div class="card quick-stats-card">
-              <div class="card-header">
-                <h2>Vista Rápida</h2>
-              </div>
-              <div class="card"><div class="card-body"><p>Error: No se encontró la plantilla del Agente de Facturación.</p></div></div>
-            </div>
-          </div>`;
+        // Fallback
       }
+    } else if (moduleName === 'Agente de Marketing') {
+        if (typeof marketingAgentViewHTML !== 'undefined') {
+            targetElement.innerHTML = marketingAgentViewHTML;
+            // Dynamically load the script for the marketing agent module
+            const script = document.createElement('script');
+            script.src = 'js/marketing-agent.js';
+            script.setAttribute('data-module-script', 'true'); // Mark as a module script
+            // Remove any old instances of the script before adding a new one
+            const oldScript = document.querySelector('script[src="js/marketing-agent.js"]');
+            if (oldScript) {
+                oldScript.remove();
+            }
+            document.body.appendChild(script);
+        } else {
+            targetElement.innerHTML = `<div class="card"><div class="card-header"><h2>Error</h2></div><div class="card-body"><p>No se encontró la plantilla del Agente de Marketing.</p></div></div>`;
+        }
     }
     else {
       targetElement.innerHTML = `<div class="card"><div class="card-header"><h2>${moduleName}</h2></div><div class="card-body"><p>Contenido para ${moduleName} irá aquí.</p></div></div>`;
