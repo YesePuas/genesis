@@ -102,30 +102,52 @@ function updatePostStatus(status) {
     const statusBadge = currentPostToApprove.querySelector('.status-badge');
     const actionContainer = currentPostToApprove.querySelector('.post-actions');
     
+    // Read final values from the modal's form fields
+    const finalTitle = document.getElementById('modalPostTitle').value;
+    const finalDate = document.getElementById('modalPostDate').value;
+    
+    // Update the main table row with edited values
+    currentPostToApprove.querySelector('.post-title').textContent = finalTitle;
+    const dateCell = currentPostToApprove.querySelector('.post-date');
+    dateCell.textContent = new Date(finalDate).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
+    
+    // Update status and remove button
     statusBadge.className = `status-badge status-${status}`;
     statusBadge.textContent = status.charAt(0).toUpperCase() + status.slice(1);
-    
     currentPostToApprove.dataset.status = status;
-    actionContainer.innerHTML = ''; // Remove button
+    actionContainer.innerHTML = ''; 
     
     closeModal(approvalModal);
     currentPostToApprove = null;
 }
 
 postsViewModal?.querySelector('.posts-table-body')?.addEventListener('click', (e) => {
-    if (e.target.classList.contains('approve-post-btn')) {
+    const target = e.target;
+    // Handle opening the approval modal
+    if (target.classList.contains('approve-post-btn')) {
         currentPostToApprove = e.target.closest('.post-item');
         const title = currentPostToApprove.querySelector('.post-title').textContent;
         const copy = currentPostToApprove.dataset.copy;
+        const date = currentPostToApprove.dataset.date;
 
-        document.getElementById('approvalPostTitle').textContent = title;
-        document.getElementById('approvalPostCopy').textContent = copy;
+        // Populate the modal with the post's current data
+        document.getElementById('modalPostTitle').value = title;
+        document.getElementById('modalPostDate').value = date;
+        document.getElementById('modalPostCopy').value = copy;
+        
         openModal(approvalModal);
     }
 });
 
 document.getElementById('confirmApprovalBtn')?.addEventListener('click', () => updatePostStatus('approved'));
 document.getElementById('rejectApprovalBtn')?.addEventListener('click', () => updatePostStatus('rejected'));
+
+// Add event listeners for the AI edit buttons (simulation)
+document.querySelectorAll('.ai-edit-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        alert('Simulación: La IA está regenerando el contenido para este campo.');
+    });
+});
 
 // --- General Modal Close Logic ---
 [createPlanModal, postsViewModal, approvalModal].forEach(modal => {

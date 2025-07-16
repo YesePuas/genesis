@@ -289,7 +289,7 @@ const marketingAgentViewHTML = `
                     </div>
                     <div class="posts-table-body" id="postsTableBody">
                         <!-- Example Post Items -->
-                        <div class="post-item" data-status="draft" data-copy="Este es el copy completo para el anuncio del nuevo Producto X. ¡No te lo pierdas!">
+                        <div class="post-item" data-status="draft" data-date="2025-07-20" data-copy="Este es el copy completo para el anuncio del nuevo Producto X. ¡No te lo pierdas!">
                             <div class="post-title">Anuncio del nuevo Producto X</div>
                             <div class="post-channel"><i class="fab fa-instagram" style="color: #E1306C;"></i> Instagram</div>
                             <div class="post-type">Imagen</div>
@@ -299,7 +299,7 @@ const marketingAgentViewHTML = `
                                 <button class="btn btn-secondary btn-sm approve-post-btn">Revisar</button>
                             </div>
                         </div>
-                        <div class="post-item" data-status="approved" data-copy="¡Prepárate! Hacemos el unboxing de nuestro producto más esperado. Mira todas sus características en este video.">
+                        <div class="post-item" data-status="approved" data-date="2025-07-22" data-copy="¡Prepárate! Hacemos el unboxing de nuestro producto más esperado. Mira todas sus características en este video.">
                             <div class="post-title">Unboxing y primeras impresiones</div>
                             <div class="post-channel"><i class="fab fa-youtube" style="color: #FF0000;"></i> YouTube</div>
                             <div class="post-type">Video</div>
@@ -317,7 +317,7 @@ const marketingAgentViewHTML = `
     <div id="approvalModal" class="modal-overlay" style="display: none;">
         <div class="modal-content modal-lg card">
             <header class="modal-header">
-                <h3 id="approvalPostTitle" class="post-title-in-modal">Título del Post</h3>
+                <h2>Revisar y Aprobar Post</h2>
                 <button class="close-button">&times;</button>
             </header>
             <main class="modal-body">
@@ -326,13 +326,32 @@ const marketingAgentViewHTML = `
                         <div class="post-preview-image">
                             <i class="fas fa-image"></i>
                             <span>Vista Previa de Imagen/Video</span>
+                            <button class="btn-icon ai-edit-btn" title="Editar con IA"><i class="fas fa-magic"></i></button>
                         </div>
                     </div>
                     <div class="approval-details-area">
-                        <p id="approvalPostCopy" class="post-copy-in-modal">Aquí irá el texto completo del post para su revisión...</p>
+                        <div class="editable-field-group">
+                            <label for="modalPostTitle">Título del Post</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="modalPostTitle" class="editable-input">
+                                <button class="btn-icon ai-edit-btn" title="Editar con IA"><i class="fas fa-magic"></i></button>
+                            </div>
+                        </div>
+                        <div class="editable-field-group">
+                            <label for="modalPostDate">Fecha de Publicación</label>
+                            <div class="input-wrapper">
+                                <input type="date" id="modalPostDate" class="editable-input">
+                            </div>
+                        </div>
+                        <div class="editable-field-group">
+                            <label for="modalPostCopy">Copy del Post</label>
+                            <div class="input-wrapper">
+                                <textarea id="modalPostCopy" class="editable-textarea" rows="6"></textarea>
+                                <button class="btn-icon ai-edit-btn" title="Editar con IA"><i class="fas fa-magic"></i></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <button class="btn btn-secondary" id="editWithAIBtn"><i class="fas fa-magic"></i> Regenerar</button>
             </main>
             <footer class="modal-footer">
                 <div class="footer-actions-right">

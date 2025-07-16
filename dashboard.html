@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +15,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
   <div class="dashboard-layout">
     <aside class="sidebar" id="sidebar">
@@ -25,23 +27,40 @@
       </div>
       <nav class="sidebar-nav">
         <ul class="nav-menu">
-          <li class="nav-item"><a href="#" class="nav-link active" data-module="Dashboard"><i class="nav-icon fas fa-home"></i><span>Dashboard</span></a></li>
+          <li class="nav-item"><a href="#" class="nav-link active" data-module="Dashboard"><i
+                class="nav-icon fas fa-home"></i><span>Dashboard</span></a></li>
           <li class="nav-category-item">
             <a href="#" class="nav-category-link" data-toggle="collapse" data-target="#admin-menu">
               <span>Administración</span>
               <span class="category-arrow"></span>
             </a>
             <ul class="nav-submenu collapse" id="admin-menu">
-              <li class="nav-item"><a href="#" class="nav-link" data-module="Administrar usuarios"><i class="nav-icon fas fa-users-cog"></i><span>Administrar usuarios</span></a></li>
-              <li class="nav-item"><a href="#" class="nav-link" data-module="Administrar parámetros funcionales"><i class="nav-icon fas fa-sliders-h"></i><span>Parámetros funcionales</span></a></li>
-              <li class="nav-item"><a href="#" class="nav-link" data-module="Administrar parámetros HTML"><i class="nav-icon fas fa-code"></i><span>Parámetros HTML</span></a></li>
-              <li class="nav-item"><a href="#" class="nav-link" data-module="Administrar departamentos"><i class="nav-icon fas fa-map-marked-alt"></i><span>Departamentos</span></a></li>
-              <li class="nav-item"><a href="#" class="nav-link" data-module="Administrar municipios"><i class="nav-icon fas fa-map-pin"></i><span>Municipios</span></a></li>
-              <li class="nav-item"><a href="#" class="nav-link" data-module="Aprobación tenant"><i class="nav-icon fas fa-check-circle"></i><span>Aprobación tenant</span></a></li>
-              <li class="nav-item"><a href="#" class="nav-link" data-module="Administrar tenants"><i class="nav-icon fas fa-building"></i><span>Administrar tenants</span></a></li>
-              <li class="nav-item"><a href="#" class="nav-link" data-module="Administrar términos y condiciones"><i class="nav-icon fas fa-file-contract"></i><span>Términos y condiciones</span></a></li>
-              <li class="nav-item"><a href="#" class="nav-link" data-module="Administrar políticas de privacidad"><i class="nav-icon fas fa-user-shield"></i><span>Políticas de privacidad</span></a></li>
-              <li class="nav-item"><a href="#" class="nav-link" data-module="Solicitudes, quejas y reclamos"><i class="nav-icon fas fa-headset"></i><span>Solicitudes y quejas</span></a></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Administrar usuarios"><i
+                    class="nav-icon fas fa-users-cog"></i><span>Administrar usuarios</span></a></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Administrar parámetros funcionales"><i
+                    class="nav-icon fas fa-sliders-h"></i><span>Parámetros funcionales</span></a></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Administrar parámetros HTML"><i
+                    class="nav-icon fas fa-code"></i><span>Parámetros HTML</span></a></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Administrar departamentos"><i
+                    class="nav-icon fas fa-map-marked-alt"></i><span>Departamentos</span></a></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Administrar municipios"><i
+                    class="nav-icon fas fa-map-pin"></i><span>Municipios</span></a></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Administrar tenants"><i
+                    class="nav-icon fas fa-building"></i><span>Administrar tenants</span></a></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Administrar términos y condiciones"><i
+                    class="nav-icon fas fa-file-contract"></i><span>Términos y condiciones</span></a></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Administrar políticas de privacidad"><i
+                    class="nav-icon fas fa-user-shield"></i><span>Políticas de privacidad</span></a></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Solicitudes, quejas y reclamos"><i
+                    class="nav-icon fas fa-headset"></i><span>Solicitudes y quejas</span></a></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Ayuda"><i
+                    class="nav-icon fas fa-check-circle"></i><span>Ayuda</span></a></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Reportes"><i
+                    class="nav-icon fas fa-check-circle"></i><span>Reportes</span></a></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Monitoreo"><i
+                    class="nav-icon fas fa-check-circle"></i><span>Monitoreo</span></a></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Logs"><i
+                    class="nav-icon fas fa-check-circle"></i><span>Logs</span></a></li>
             </ul>
           </li>
 
@@ -51,8 +70,10 @@
               <span class="category-arrow"></span>
             </a>
             <ul class="nav-submenu collapse" id="billing-menu">
-              <li class="nav-item"><a href="#" class="nav-link" data-module="Gestionar facturación"><i class="nav-icon fas fa-file-invoice-dollar"></i><span>Gestionar facturación</span></a></li>
-              <li class="nav-item"><a href="#" class="nav-link" data-module="Gestionar pagos"><i class="nav-icon fas fa-credit-card"></i><span>Gestionar pagos</span></a></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Gestionar facturación"><i
+                    class="nav-icon fas fa-file-invoice-dollar"></i><span>Gestionar facturación</span></a></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Gestionar pagos"><i
+                    class="nav-icon fas fa-credit-card"></i><span>Gestionar pagos</span></a></li>
             </ul>
           </li>
 
@@ -62,22 +83,28 @@
               <span class="category-arrow"></span>
             </a>
             <ul class="nav-submenu collapse" id="tenant-menu">
-              <li class="nav-item"><a href="#" class="nav-link" data-module="Mi cuenta"><i class="nav-icon fas fa-user-circle"></i><span>Mi cuenta</span></a></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Mi cuenta"><i
+                    class="nav-icon fas fa-user-circle"></i><span>Mi cuenta</span></a></li>
             </ul>
           </li>
           <li class="nav-category-item">
-                <a href="#" class="nav-link nav-category-link" data-toggle="collapse" data-target="#tenant-services-menu">
-                  <span>Servicios</span>
-                  <span class="category-arrow"></span>
-                </a>
-                <ul class="nav-submenu collapse" id="tenant-services-menu">
-                  <li class="nav-item"><a href="#" class="nav-link" data-module="Agente de Marketing"><i class="nav-icon fas fa-file-invoice-dollar"></i><span>Agente de Marketing</span></a></li>
-                  <li class="nav-item"><a href="#" class="nav-link" data-module="Agente de Facturación"><i class="nav-icon fas fa-file-invoice-dollar"></i><span>Agente de Facturación</span></a></li>
-                  <li class="nav-item"><a href="#" class="nav-link" data-module="Agente de Clientes"><i class="nav-icon fas fa-users"></i><span>Agente de Clientes</span></a></li>
-                  <li class="nav-item"><a href="#" class="nav-link" data-module="Agente de Tareas"><i class="nav-icon fas fa-tasks"></i><span>Agente de Tareas</span></a></li>
-                  <li class="nav-item"><a href="#" class="nav-link" data-module="Agente de Recursos Humanos"><i class="nav-icon fas fa-user-tie"></i><span>Agente de Recursos Humanos</span></a></li>
-                </ul>
-              </li>
+            <a href="#" class="nav-link nav-category-link" data-toggle="collapse" data-target="#tenant-services-menu">
+              <span>Servicios</span>
+              <span class="category-arrow"></span>
+            </a>
+            <ul class="nav-submenu collapse" id="tenant-services-menu">
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Agente de Marketing"><i
+                    class="nav-icon fas fa-file-invoice-dollar"></i><span>Agente de Marketing</span></a></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Agente de Facturación"><i
+                    class="nav-icon fas fa-file-invoice-dollar"></i><span>Agente de Facturación</span></a></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Agente de Clientes"><i
+                    class="nav-icon fas fa-users"></i><span>Agente de Clientes</span></a></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Agente de Tareas"><i
+                    class="nav-icon fas fa-tasks"></i><span>Agente de Tareas</span></a></li>
+              <li class="nav-item"><a href="#" class="nav-link" data-module="Agente de Recursos Humanos"><i
+                    class="nav-icon fas fa-user-tie"></i><span>Agente de Recursos Humanos</span></a></li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <div class="sidebar-footer">

@@ -486,6 +486,15 @@
     justify-content: center;
     color: var(--text-muted);
     border: 1px solid var(--border-color);
+    position: relative; /* Add for positioning the button */
+}
+
+.post-preview-image .ai-edit-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(4px);
 }
 
 .post-preview-image i {
@@ -512,6 +521,57 @@
     overflow-y: auto;
 }
 
+/* New Editable Fields in Modal */
+.editable-field-group {
+    margin-bottom: 1.5rem;
+}
+
+.editable-field-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.editable-input, .editable-textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-family: var(--font-main);
+    font-size: 1rem;
+    box-sizing: border-box;
+    background-color: #fff;
+    transition: border-color 0.2s;
+}
+
+.editable-input:focus, .editable-textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+.editable-textarea {
+    resize: vertical;
+}
+
+.ai-edit-btn {
+    position: absolute;
+    top: 50%;
+    right: 0.5rem;
+    transform: translateY(-50%);
+    color: var(--primary);
+}
+
+.input-wrapper textarea ~ .ai-edit-btn {
+    top: 1.25rem; /* Adjust for textarea */
+    transform: translateY(-50%);
+}
+
 /* Responsive Table */
 .posts-list-container {
     overflow-x: auto;
@@ -524,7 +584,8 @@
 @media (min-width: 992px) {
     .approval-layout {
         flex-direction: row;
-        height: 250px; /* Fixed height for layout */
+        height: auto;
+        min-height: 250px; /* Fixed height for layout */
     }
 
     .approval-preview-area {
