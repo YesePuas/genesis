@@ -1,33 +1,23 @@
+// --- Constants & Global State ---
 const fileUploader = document.getElementById('fileUploader');
 const fileUploadArea = document.querySelector('.file-upload-area');
 const plansGrid = document.getElementById('plansGrid');
+const createPlanModal = document.getElementById('createPlanModal');
+const postsViewModal = document.getElementById('postsViewModal');
+const approvalModal = document.getElementById('approvalModal');
+
+let currentPostToApprove = null;
+
+// --- Helper Functions ---
+function openModal(modal) {
+    if (modal) modal.style.display = 'flex';
+}
+
+function closeModal(modal) {
+    if (modal) modal.style.display = 'none';
+}
 
 // --- File Upload Logic ---
-if (fileUploadArea) {
-    fileUploadArea.addEventListener('click', () => fileUploader.click());
-
-    fileUploadArea.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        fileUploadArea.classList.add('dragging');
-    });
-
-    fileUploadArea.addEventListener('dragleave', () => {
-        fileUploadArea.classList.remove('dragging');
-    });
-
-    fileUploadArea.addEventListener('drop', (e) => {
-        e.preventDefault();
-        fileUploadArea.classList.remove('dragging');
-        handleFiles(e.dataTransfer.files);
-    });
-}
-
-if (fileUploader) {
-    fileUploader.addEventListener('change', (e) => {
-        handleFiles(e.target.files);
-    });
-}
-
 function handleFiles(files) {
     const preview = document.getElementById('uploadedFilesPreview');
     if (!preview) return;
@@ -39,55 +29,21 @@ function handleFiles(files) {
     }
 }
 
-// --- Create Plan Modal Logic ---
-const createPlanModal = document.getElementById('createPlanModal');
-const createPlanBtn = document.getElementById('createPlanBtn');
-const addNewPlanCard = document.getElementById('addNewPlanCard');
-const closeCreateModalBtn = document.getElementById('closeModalBtn');
-const cancelModalBtn = document.getElementById('cancelModalBtn');
-const createPlanForm = document.getElementById('createPlanForm');
-
-function openCreateModal() {
-    if (createPlanModal) createPlanModal.style.display = 'flex';
-}
-
-function closeCreateModal() {
-    if (createPlanModal) createPlanModal.style.display = 'none';
-}
-
-if (createPlanBtn) createPlanBtn.addEventListener('click', openCreateModal);
-if (addNewPlanCard) addNewPlanCard.addEventListener('click', openCreateModal);
-if (closeCreateModalBtn) closeCreateModalBtn.addEventListener('click', closeCreateModal);
-if (cancelModalBtn) cancelModalBtn.addEventListener('click', closeCreateModal);
-
-if (createPlanModal) {
-    createPlanModal.addEventListener('click', (e) => {
-        if (e.target === createPlanModal) {
-            closeCreateModal();
-        }
-    });
-}
-
-if (createPlanForm) {
-    createPlanForm.addEventListener('submit', (e) => {
+if (fileUploadArea) {
+    fileUploadArea.addEventListener('click', () => fileUploader.click());
+    fileUploadArea.addEventListener('dragover', (e) => e.preventDefault());
+    fileUploadArea.addEventListener('dragleave', () => fileUploadArea.classList.remove('dragging'));
+    fileUploadArea.addEventListener('drop', (e) => {
         e.preventDefault();
-        const planName = document.getElementById('planNameInput').value;
-        const planDescription = document.getElementById('planDescriptionInput').value;
-        const startDate = document.getElementById('planStartDate').value;
-        const endDate = document.getElementById('planEndDate').value;
-
-        if (!planName.trim() || !planDescription.trim() || !startDate || !endDate) {
-            alert('Por favor, completa todos los campos.');
-            return;
-        }
-
-        addNewPlanCardToGrid(planName, planDescription, startDate, endDate);
-        
-        createPlanForm.reset();
-        closeCreateModal();
+        fileUploadArea.classList.remove('dragging');
+        handleFiles(e.dataTransfer.files);
     });
 }
+if (fileUploader) {
+    fileUploader.addEventListener('change', (e) => handleFiles(e.target.files));
+}
 
+// --- Create Plan Logic ---
 function addNewPlanCardToGrid(name, description, startDate, endDate) {
     if (!plansGrid) return;
     const addNewCard = document.getElementById('addNewPlanCard');
@@ -98,53 +54,87 @@ function addNewPlanCardToGrid(name, description, startDate, endDate) {
     
     const formattedStartDate = new Date(startDate).toLocaleDateString('es-ES', { day: 'numeric', month: 'short' });
     const formattedEndDate = new Date(endDate).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
-    const dateString = `${formattedStartDate} - ${formattedEndDate}`;
 
     planCard.innerHTML = `
         <div class="card-body">
             <h3 class="plan-name">${name}</h3>
             <p class="plan-objective">${description}</p>
-            <p class="plan-date"><i class="fas fa-calendar-alt"></i> ${dateString}</p>
-            <a href="#" class="btn btn-secondary view-posts-btn">Ver Posts Generados</a>
+            <p class="plan-date"><i class="fas fa-calendar-alt"></i> ${formattedStartDate} - ${formattedEndDate}</p>
+            <a href="#" class="btn btn-secondary view-posts-btn">Ver Posts</a>
         </div>
     `;
-
     plansGrid.insertBefore(planCard, addNewCard);
 }
 
+document.getElementById('createPlanForm')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const planName = document.getElementById('planNameInput').value;
+    const planDescription = document.getElementById('planDescriptionInput').value;
+    const startDate = document.getElementById('planStartDate').value;
+    const endDate = document.getElementById('planEndDate').value;
 
-// --- Posts View Modal Logic ---
-const postsViewModal = document.getElementById('postsViewModal');
-const closePostsModalBtn = document.getElementById('closePostsModalBtn');
-const postsModalTitle = document.getElementById('postsModalTitle');
+    if (!planName.trim() || !planDescription.trim() || !startDate || !endDate) {
+        alert('Por favor, completa todos los campos.');
+        return;
+    }
+    addNewPlanCardToGrid(planName, planDescription, startDate, endDate);
+    document.getElementById('createPlanForm').reset();
+    closeModal(createPlanModal);
+});
 
-function openPostsModal(planName) {
-    if (postsModalTitle) postsModalTitle.textContent = `Posts para: ${planName}`;
-    if (postsViewModal) postsViewModal.style.display = 'flex';
+document.getElementById('createPlanBtn')?.addEventListener('click', () => openModal(createPlanModal));
+document.getElementById('addNewPlanCard')?.addEventListener('click', () => openModal(createPlanModal));
+
+// --- Posts View Logic ---
+plansGrid?.addEventListener('click', (e) => {
+    if (e.target.classList.contains('view-posts-btn')) {
+        e.preventDefault();
+        const planName = e.target.closest('.plan-card').querySelector('.plan-name').textContent;
+        document.getElementById('postsModalTitle').textContent = `Posts para: ${planName}`;
+        openModal(postsViewModal);
+    }
+});
+
+// --- Approval Logic ---
+function updatePostStatus(status) {
+    if (!currentPostToApprove) return;
+
+    const statusBadge = currentPostToApprove.querySelector('.status-badge');
+    const actionContainer = currentPostToApprove.querySelector('.post-actions');
+    
+    statusBadge.className = `status-badge status-${status}`;
+    statusBadge.textContent = status.charAt(0).toUpperCase() + status.slice(1);
+    
+    currentPostToApprove.dataset.status = status;
+    actionContainer.innerHTML = ''; // Remove button
+    
+    closeModal(approvalModal);
+    currentPostToApprove = null;
 }
 
-function closePostsModal() {
-    if (postsViewModal) postsViewModal.style.display = 'none';
-}
+postsViewModal?.querySelector('.posts-table-body')?.addEventListener('click', (e) => {
+    if (e.target.classList.contains('approve-post-btn')) {
+        currentPostToApprove = e.target.closest('.post-item');
+        const title = currentPostToApprove.querySelector('.post-title').textContent;
+        const copy = currentPostToApprove.dataset.copy;
 
-if(plansGrid) {
-    plansGrid.addEventListener('click', (e) => {
-        const target = e.target;
-        if (target.classList.contains('view-posts-btn')) {
-            e.preventDefault();
-            const planCard = target.closest('.plan-card');
-            const planName = planCard.querySelector('.plan-name').textContent;
-            openPostsModal(planName);
-        }
-    });
-}
+        document.getElementById('approvalPostTitle').textContent = title;
+        document.getElementById('approvalPostCopy').textContent = copy;
+        openModal(approvalModal);
+    }
+});
 
-if (closePostsModalBtn) closePostsModalBtn.addEventListener('click', closePostsModal);
+document.getElementById('confirmApprovalBtn')?.addEventListener('click', () => updatePostStatus('approved'));
+document.getElementById('rejectApprovalBtn')?.addEventListener('click', () => updatePostStatus('rejected'));
 
-if (postsViewModal) {
-    postsViewModal.addEventListener('click', (e) => {
-        if (e.target === postsViewModal || e.target.classList.contains('close-button')) {
-            closePostsModal();
-        }
-    });
-} 
+// --- General Modal Close Logic ---
+[createPlanModal, postsViewModal, approvalModal].forEach(modal => {
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal || e.target.classList.contains('close-button')) {
+                closeModal(modal);
+            }
+        });
+    }
+});
+document.getElementById('cancelApprovalBtn')?.addEventListener('click', () => closeModal(approvalModal)); 

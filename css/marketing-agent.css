@@ -241,6 +241,11 @@
     color: #1e40af;
 }
 
+.status-rejected {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
 .post-actions {
     display: flex;
     gap: 0.5rem;
@@ -256,9 +261,19 @@
     border-radius: 50%;
 }
 
-.btn-icon:hover {
+.btn#aaaaaaover {
     color: var(--text-main);
     background-color: #f3f4f6;
+}
+
+.btn-danger {
+    background-color: #dc2626;
+    color: #fff;
+    border: 1px solid #dc2626;
+}
+
+.btn-danger:hover {
+    background-color: #b91c1c;
 }
 
 /* Modal Styles */
@@ -365,6 +380,75 @@
     color: var(--text-muted);
 }
 
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--border-color);
+    background-color: #f9fafb;
+}
+
+.modal-footer > div {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.footer-actions-right {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+.btn-sm {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+}
+
+.btn-tertiary {
+    background-color: var(--content-bg);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+}
+
+.btn-tertiary:hover {
+    background-color: #e5e7eb;
+}
+
+.post-preview-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.post-preview-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #e5e7eb;
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+}
+
+.post-preview-image i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.post-preview-copy h4 {
+    margin-top: 0;
+}
+
+@media (min-width: 768px) {
+    .post-preview-container {
+        grid-template-columns: 200px 1fr;
+    }
+}
+
 @media (min-width: 576px) {
     .form-group-row {
         flex-direction: row;
@@ -373,5 +457,78 @@
 
     .form-group-row .form-group {
         flex: 1;
+    }
+} 
+
+/* Approval Modal Layout */
+.approval-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.approval-preview-area {
+    flex-shrink: 0;
+}
+
+.post-preview-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #f3f4f6; /* Lighter background */
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+}
+
+.post-preview-image i {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.approval-details-area {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-title-in-modal {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+}
+
+.post-copy-in-modal {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+/* Responsive Table */
+.posts-list-container {
+    overflow-x: auto;
+}
+
+.posts-table-header, .post-item {
+    min-width: 700px;
+}
+
+@media (min-width: 992px) {
+    .approval-layout {
+        flex-direction: row;
+        height: 250px; /* Fixed height for layout */
+    }
+
+    .approval-preview-area {
+        width: 40%;
+    }
+
+    .approval-details-area {
+        width: 60%;
+        height: 100%;
     }
 } 
