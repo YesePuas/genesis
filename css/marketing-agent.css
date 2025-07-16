@@ -34,8 +34,11 @@
 .btn-primary {
     background-color: var(--primary);
     color: #fff;
+    
 }
-
+.form-actions .btn {
+    flex: 1;
+}
 .btn-primary:hover {
     background-color: var(--primary-dark);
 }
