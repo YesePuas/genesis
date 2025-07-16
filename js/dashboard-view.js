@@ -265,63 +265,58 @@ const marketingAgentViewHTML = `
             </div>
         </div>
     </section>
-    <section class="plan-detail-view-section" id="planDetailView" style="display: none;">
-        <header class="plan-detail-header">
-            <div>
-                <button class="btn btn-secondary" id="backToPlansBtn"><i class="fas fa-arrow-left"></i> Volver a Planes</button>
-                <h2 class="section-title" id="planDetailTitle">Lanzamiento Producto X</h2>
+
+    <!-- Posts View Modal -->
+    <div id="postsViewModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content modal-lg card">
+            <div class="modal-header">
+                <h2 id="postsModalTitle">Posts para: Plan de Lanzamiento</h2>
+                <button id="closePostsModalBtn" class="close-button">&times;</button>
             </div>
-            <button class="btn btn-primary" id="regeneratePostsBtn"><i class="fas fa-sync-alt"></i> Regenerar Posts</button>
-        </header>
-        <div class="posts-list card">
-            <div class="card-body">
-                <div class="posts-table-header">
-                    <div class="header-item">Post</div>
-                    <div class="header-item">Canal</div>
-                    <div class="header-item">Tipo</div>
-                    <div class="header-item">Fecha Pub.</div>
-                    <div class="header-item">Estado</div>
-                    <div class="header-item">Acciones</div>
+            <div class="modal-body">
+                <div class="plan-detail-actions">
+                    <p>Estos son los posts sugeridos por la IA para tu plan. Puedes editarlos o regenerar la lista.</p>
+                    <button class="btn btn-primary"><i class="fas fa-sync-alt"></i> Regenerar Posts</button>
                 </div>
-                <div class="posts-table-body" id="postsTableBody">
-                    <div class="post-item">
-                        <div class="post-title">Anuncio del nuevo Producto X</div>
-                        <div class="post-channel"><i class="fab fa-instagram" style="color: #E1306C;"></i> Instagram</div>
-                        <div class="post-type">Imagen</div>
-                        <div class="post-date">20 Jul, 2025</div>
-                        <div class="post-status"><span class="status-badge status-draft">Borrador</span></div>
-                        <div class="post-actions">
-                            <button class="btn-icon"><i class="fas fa-edit"></i></button>
-                            <button class="btn-icon"><i class="fas fa-trash"></i></button>
-                        </div>
+                <div class="posts-list">
+                    <div class="posts-table-header">
+                        <div class="header-item">Post</div>
+                        <div class="header-item">Canal</div>
+                        <div class="header-item">Tipo</div>
+                        <div class="header-item">Fecha Pub.</div>
+                        <div class="header-item">Estado</div>
+                        <div class="header-item">Acciones</div>
                     </div>
-                    <div class="post-item">
-                        <div class="post-title">Unboxing y primeras impresiones</div>
-                        <div class="post-channel"><i class="fab fa-youtube" style="color: #FF0000;"></i> YouTube</div>
-                        <div class="post-type">Video</div>
-                        <div class="post-date">22 Jul, 2025</div>
-                        <div class="post-status"><span class="status-badge status-approved">Aprobado</span></div>
-                        <div class="post-actions">
-                            <button class="btn-icon"><i class="fas fa-edit"></i></button>
-                            <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                    <div class="posts-table-body" id="postsTableBody">
+                        <div class="post-item">
+                            <div class="post-title">Anuncio del nuevo Producto X</div>
+                            <div class="post-channel"><i class="fab fa-instagram" style="color: #E1306C;"></i> Instagram</div>
+                            <div class="post-type">Imagen</div>
+                            <div class="post-date">20 Jul, 2025</div>
+                            <div class="post-status"><span class="status-badge status-draft">Borrador</span></div>
+                            <div class="post-actions">
+                                <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                            </div>
                         </div>
-                    </div>
-                     <div class="post-item">
-                        <div class="post-title">Cómo el Producto X resuelve [problema]</div>
-                        <div class="post-channel"><i class="fab fa-linkedin" style="color: #0A66C2;"></i> LinkedIn</div>
-                        <div class="post-type">Artículo</div>
-                        <div class="post-date">25 Jul, 2025</div>
-                        <div class="post-status"><span class="status-badge status-scheduled">Programado</span></div>
-                        <div class="post-actions">
-                            <button class="btn-icon"><i class="fas fa-edit"></i></button>
-                            <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                        <div class="post-item">
+                            <div class="post-title">Unboxing y primeras impresiones</div>
+                            <div class="post-channel"><i class="fab fa-youtube" style="color: #FF0000;"></i> YouTube</div>
+                            <div class="post-type">Video</div>
+                            <div class="post-date">22 Jul, 2025</div>
+                            <div class="post-status"><span class="status-badge status-approved">Aprobado</span></div>
+                            <div class="post-actions">
+                                <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 </div>
+
 <!-- Create Plan Modal -->
 <div id="createPlanModal" class="modal-overlay" style="display: none;">
     <div class="modal-content card">
@@ -337,7 +332,17 @@ const marketingAgentViewHTML = `
                 </div>
                 <div class="form-group">
                     <label for="planDescriptionInput">Descripción / Objetivo</label>
-                    <textarea id="planDescriptionInput" rows="4" placeholder="Ej: Aumentar las ventas del nuevo producto en un 15%..." required></textarea>
+                    <textarea id="planDescriptionInput" rows="3" placeholder="Ej: Aumentar las ventas del nuevo producto en un 15%..." required></textarea>
+                </div>
+                <div class="form-group-row">
+                    <div class="form-group">
+                        <label for="planStartDate">Fecha de Inicio</label>
+                        <input type="date" id="planStartDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="planEndDate">Fecha de Fin</label>
+                        <input type="date" id="planEndDate" required>
+                    </div>
                 </div>
                 <div class="form-actions">
                     <button type="button" class="btn btn-secondary" id="cancelModalBtn">Cancelar</button>
