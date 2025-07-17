@@ -28,45 +28,56 @@ document.addEventListener('DOMContentLoaded', () => {
         const cancelButton = card.querySelector('.btn-cancel');
         const form = card.querySelector('form');
         const formActions = card.querySelector('.form-actions');
-        const inputs = form.querySelectorAll('input.form-control');
+        const inputs = form ? form.querySelectorAll('input.form-control') : [];
         const logoEditButton = card.querySelector('.btn-edit-logo');
-        
+
         let originalValues = {};
 
-        editButton.addEventListener('click', () => {
-            card.classList.add('is-editing');
-            formActions.style.display = 'flex';
-            if (logoEditButton) logoEditButton.style.display = 'block';
+        if (editButton) {
+            editButton.addEventListener('click', () => {
+                card.classList.add('is-editing');
+                if(formActions) formActions.style.display = 'flex';
+                if (logoEditButton) logoEditButton.style.display = 'block';
 
-            inputs.forEach(input => {
-                originalValues[input.id] = input.value;
-                if (input.id !== 'tenant-domain') {
-                    input.readOnly = false;
+                if (inputs.length > 0) {
+                    inputs.forEach(input => {
+                        originalValues[input.id] = input.value;
+                        if (input.id !== 'tenant-domain') {
+                            input.readOnly = false;
+                        }
+                    });
                 }
             });
-        });
+        }
 
-        cancelButton.addEventListener('click', () => {
-            card.classList.remove('is-editing');
-            formActions.style.display = 'none';
+        if (cancelButton) {
+            cancelButton.addEventListener('click', () => {
+                card.classList.remove('is-editing');
+            if(formActions) formActions.style.display = 'none';
             if (logoEditButton) logoEditButton.style.display = 'none';
 
-            inputs.forEach(input => {
-                input.value = originalValues[input.id];
-                input.readOnly = true;
+                if (inputs.length > 0) {
+                    inputs.forEach(input => {
+                        input.value = originalValues[input.id];
+                    input.readOnly = true;
+                });
+                }
             });
-        });
-
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            console.log(`Guardando datos para: ${form.id}`);
-            showFeedback('Cambios guardados con éxito.', 'success');
-            
-            card.classList.remove('is-editing');
-            formActions.style.display = 'none';
-            if (logoEditButton) logoEditButton.style.display = 'none';
-            inputs.forEach(input => input.readOnly = true);
-        });
+        }
+        
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                showFeedback('Cambios guardados con éxito.', 'success');
+                
+                card.classList.remove('is-editing');
+                if(formActions) formActions.style.display = 'none';
+                if (logoEditButton) logoEditButton.style.display = 'none';
+                if (inputs.length > 0) {
+                    inputs.forEach(input => input.readOnly = true);
+                }
+            });
+        }
     });
 
     // --- Logo Upload specific logic ---

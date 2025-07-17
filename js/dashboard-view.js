@@ -484,16 +484,20 @@ const miCuentaViewHTML = `
     </div>
 
     <div class="tab-content" id="subscription">
-        <div class="card">
+        <div class="card card-editable" id="subscription-card">
             <div class="card-header">
                 <h2>Plan de Suscripción</h2>
+                 <button class="btn-icon btn-edit"><i class="fas fa-pencil-alt"></i></button>
             </div>
              <div class="card-body">
                 <div class="current-plan-card">
                     <h5>Profesional</h5>
                     <p class="price">$99 USD / mes</p>
                     <p>Tu plan se renueva el 30 de Nov, 2024.</p>
-                    <a href="#" class="btn btn-secondary">Administrar Suscripción</a>
+                </div>
+                <div class="form-actions" style="display: none;">
+                    <a href="#" class="btn btn-primary">Cambiar plan</a>
+                    <button type="button" class="btn btn-secondary btn-cancel">Cancelar</button>
                 </div>
             </div>
         </div>
@@ -570,7 +574,12 @@ function loadModule(moduleName) {
     script.defer = true;
     document.body.appendChild(script);
     script.onload = () => {
-      document.body.removeChild(script);
+      // clean up the script tag after it has been loaded
+      // to prevent multiple script tags from being added
+      // to the body every time the module is loaded.
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
     };
   }
 
