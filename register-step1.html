@@ -49,8 +49,11 @@
               </div>
               <div class="form-group">
                 <label for="telefono">Teléfono</label>
-                <input type="tel" id="telefono" name="telefono" required>
-                <small class="input-example">Ej: +57 600 123 456</small>
+                <div class="phone-input-group">
+                  <input type="text" id="phone-prefix" name="phone-prefix" class="phone-prefix" placeholder="+1">
+                  <input type="tel" id="telefono" name="telefono" class="phone-number" required>
+                </div>
+                <small class="input-example">Ej: +57 3001234567</small>
               </div>
             </div>
             <div class="wizard-actions-row">
