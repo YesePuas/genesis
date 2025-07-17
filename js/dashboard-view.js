@@ -572,8 +572,8 @@ function loadModule(moduleName) {
     const script = document.createElement('script');
     script.src = 'js/mi-cuenta.js';
     script.defer = true;
-    document.body.appendChild(script);
     script.onload = () => {
+        initializeMyAccount();
       // clean up the script tag after it has been loaded
       // to prevent multiple script tags from being added
       // to the body every time the module is loaded.
@@ -581,6 +581,7 @@ function loadModule(moduleName) {
         script.parentNode.removeChild(script);
       }
     };
+    document.body.appendChild(script);
   }
 
   if (moduleName === 'Agente de Marketing') {

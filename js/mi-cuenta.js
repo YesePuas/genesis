@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+function initializeMyAccount() {
     const accountContainer = document.querySelector('.account-container');
     if (!accountContainer) return;
 
@@ -114,4 +114,4 @@ document.addEventListener('DOMContentLoaded', () => {
             feedbackMessage.classList.remove('show');
         }, 3000);
     }
-}); 
+} 
