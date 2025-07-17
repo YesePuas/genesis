@@ -178,6 +178,8 @@ body {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  width: calc(100% - 300px); /* Make width dynamic */
+  min-width: 0; /* Prevent overflow */
 }
 
 .main-header {
@@ -200,6 +202,8 @@ body {
 .content-area {
   padding: 1.5rem;
   flex-grow: 1;
+  overflow-y: auto; /* Allow vertical scroll within content */
+  -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
 }
 
 .card {
@@ -246,6 +250,7 @@ body {
 
   .main-content-wrapper {
     margin-left: 0;
+    width: 100%; /* Full width on mobile */
   }
 
   .mobile-menu-toggle {
