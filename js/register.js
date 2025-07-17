@@ -506,3 +506,69 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 }); 
+
+document.addEventListener('DOMContentLoaded', function () {
+  const paisSelect = document.getElementById('paisEmpresa');
+  const departamentoSelect = document.getElementById('departamentoEmpresa');
+  const ciudadSelect = document.getElementById('ciudadEmpresa');
+  const phonePrefixInput = document.getElementById('phone-prefix');
+
+  const data = {
+    CO: {
+      prefix: '+57',
+      departamentos: {
+        Antioquia: ['Medellín', 'Envigado', 'Itagüí'],
+        Cundinamarca: ['Bogotá', 'Soacha', 'Zipaquirá'],
+      },
+    },
+    MX: {
+      prefix: '+52',
+      departamentos: {
+        'Jalisco': ['Guadalajara', 'Zapopan', 'Tlaquepaque'],
+        'Nuevo León': ['Monterrey', 'San Nicolás', 'Guadalupe'],
+      },
+    },
+    US: {
+      prefix: '+1',
+      departamentos: {
+        California: ['Los Angeles', 'San Diego', 'San Francisco'],
+        Florida: ['Miami', 'Orlando', 'Tampa'],
+      },
+    },
+  };
+
+  paisSelect.addEventListener('change', function () {
+    const pais = this.value;
+    departamentoSelect.innerHTML = '<option value="">Selecciona un departamento</option>';
+    ciudadSelect.innerHTML = '<option value="">Selecciona una ciudad</option>';
+    departamentoSelect.disabled = true;
+    ciudadSelect.disabled = true;
+    phonePrefixInput.value = '';
+
+    if (pais && data[pais]) {
+      phonePrefixInput.value = data[pais].prefix;
+      departamentoSelect.disabled = false;
+      const departamentos = Object.keys(data[pais].departamentos);
+      departamentos.forEach(function (depto) {
+        const option = new Option(depto, depto);
+        departamentoSelect.add(option);
+      });
+    }
+  });
+
+  departamentoSelect.addEventListener('change', function () {
+    const pais = paisSelect.value;
+    const departamento = this.value;
+    ciudadSelect.innerHTML = '<option value="">Selecciona una ciudad</option>';
+    ciudadSelect.disabled = true;
+
+    if (pais && departamento && data[pais] && data[pais].departamentos[departamento]) {
+      ciudadSelect.disabled = false;
+      const ciudades = data[pais].departamentos[departamento];
+      ciudades.forEach(function (ciudad) {
+        const option = new Option(ciudad, ciudad);
+        ciudadSelect.add(option);
+      });
+    }
+  });
+}); 

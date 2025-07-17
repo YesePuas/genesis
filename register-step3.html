@@ -39,7 +39,7 @@
                   <input type="text" id="nombreEmpresa" name="nombreEmpresa" required>
                 </div>
                 <div class="form-group">
-                  <label for="nitEmpresa">NIT <span class="required-asterisk">*</span></label>
+                  <label for="nitEmpresa">Identificación tributaria <span class="required-asterisk">*</span></label>
                   <input type="text" id="nitEmpresa" name="nitEmpresa" required>
                 </div>
               </div>
@@ -51,23 +51,33 @@
                   <label for="direccionEmpresa">Dirección <span class="required-asterisk">*</span></label>
                   <input type="text" id="direccionEmpresa" name="direccionEmpresa" required>
                 </div>
+                 <div class="form-group">
+                  <label for="paisEmpresa">País <span class="required-asterisk">*</span></label>
+                  <select id="paisEmpresa" name="paisEmpresa" required>
+                    <option value="">Selecciona un país</option>
+                    <option value="CO">Colombia</option>
+                    <option value="MX">México</option>
+                    <option value="US">Estados Unidos</option>
+                  </select>
+                </div>
                 <div class="form-group">
                   <label for="departamentoEmpresa">Departamento <span class="required-asterisk">*</span></label>
-                  <select id="departamentoEmpresa" name="departamentoEmpresa" required>
+                  <select id="departamentoEmpresa" name="departamentoEmpresa" required disabled>
                     <option value="">Selecciona un departamento</option>
-                    <option value="Cundinamarca">Cundinamarca</option>
-                    <option value="Antioquia">Antioquia</option>
-                    <option value="Bolivar">Bolivar</option>
-                    <option value="Atlantico">Atlántico</option>
                   </select>
                 </div>
                 <div class="form-group">
                   <label for="ciudadEmpresa">Ciudad <span class="required-asterisk">*</span></label>
-                  <input type="text" id="ciudadEmpresa" name="ciudadEmpresa" required>
+                   <select id="ciudadEmpresa" name="ciudadEmpresa" required disabled>
+                    <option value="">Selecciona una ciudad</option>
+                  </select>
                 </div>
                 <div class="form-group">
                   <label for="telefonoEmpresa">Teléfono <span class="required-asterisk">*</span></label>
-                  <input type="tel" id="telefonoEmpresa" name="telefonoEmpresa" required>
+                  <div class="phone-input-group">
+                    <input type="text" id="phone-prefix" name="phone-prefix" class="phone-prefix" placeholder="+1" readonly>
+                    <input type="tel" id="telefonoEmpresa" name="telefonoEmpresa" class="phone-number" required>
+                  </div>
                 </div>
                 <div class="form-group form-group-full">
                   <label for="emailEmpresa">Correo electrónico</label>
