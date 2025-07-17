@@ -56,54 +56,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // --- Content Loading Logic ---
-  function loadModuleContent(moduleName, targetElement) {
-    targetElement.innerHTML = '<div class="loading-spinner"></div>'; // Show a spinner
-    mainTitle.textContent = moduleName;
-
-    // Remove old module-specific scripts to avoid conflicts
-    const oldScripts = document.querySelectorAll('[data-module-script]');
-    oldScripts.forEach(script => script.remove());
-
-    if (moduleName === 'Dashboard') {
-      if (typeof dashboardViewHTML !== 'undefined') {
-        targetElement.innerHTML = dashboardViewHTML;
-      } else {
-        // Fallback
-      }
-    } else if (moduleName === 'Agente de Facturación') {
-      if (typeof billingAgentViewHTML !== 'undefined') {
-        targetElement.innerHTML = billingAgentViewHTML;
-      } else {
-        // Fallback
-      }
-    } else if (moduleName === 'Agente de Clientes') {
-      if (typeof clientAgentViewHTML !== 'undefined') {
-        targetElement.innerHTML = clientAgentViewHTML;
-      } else {
-        // Fallback
-      }
-    } else if (moduleName === 'Agente de Marketing') {
-        if (typeof marketingAgentViewHTML !== 'undefined') {
-            targetElement.innerHTML = marketingAgentViewHTML;
-            // Dynamically load the script for the marketing agent module
-            const script = document.createElement('script');
-            script.src = 'js/marketing-agent.js';
-            script.setAttribute('data-module-script', 'true'); // Mark as a module script
-            // Remove any old instances of the script before adding a new one
-            const oldScript = document.querySelector('script[src="js/marketing-agent.js"]');
-            if (oldScript) {
-                oldScript.remove();
-            }
-            document.body.appendChild(script);
-        } else {
-            targetElement.innerHTML = `<div class="card"><div class="card-header"><h2>Error</h2></div><div class="card-body"><p>No se encontró la plantilla del Agente de Marketing.</p></div></div>`;
-        }
-    }
-    else {
-      targetElement.innerHTML = `<div class="card"><div class="card-header"><h2>${moduleName}</h2></div><div class="card-body"><p>Contenido para ${moduleName} irá aquí.</p></div></div>`;
-    }
-  }
-
   function handleNavLinkClick(e) {
     if (this.dataset.toggle === 'collapse') return;
     e.preventDefault();
@@ -113,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const moduleName = this.dataset.module;
     if (moduleName) {
-      loadModuleContent(moduleName, contentArea);
+      loadModule(moduleName); // This function is in dashboard-view.js
     }
 
     if (window.innerWidth <= 768 && sidebar.classList.contains('open')) {
@@ -124,12 +76,12 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', handleNavLinkClick);
   });
-
+  
   // --- Set Initial Page State ---
   const firstLink = document.querySelector('.nav-menu .nav-item .nav-link:not(.nav-category-link)');
   if (firstLink) {
     firstLink.classList.add('active');
     const initialModuleName = firstLink.dataset.module || 'Bienvenido a Genesix';
-    loadModuleContent(initialModuleName, contentArea);
+    loadModule(initialModuleName);
   }
 });

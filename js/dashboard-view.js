@@ -397,4 +397,190 @@ const marketingAgentViewHTML = `
             </form>
         </div>
     </div>
+</div>
+`;
+const miCuentaViewHTML = `
+<div class="account-container">
+    <!-- Tab Navigation -->
+    <div class="tabs-navigation">
+        <button class="tab-link active" data-tab="info">Información y Logo</button>
+        <button class="tab-link" data-tab="payment">Método de Pago</button>
+        <button class="tab-link" data-tab="subscription">Plan y Suscripción</button>
+        <button class="tab-link" data-tab="history">Historial de Pagos</button>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="tab-content active" id="info">
+        <div class="card card-editable" id="general-info-card">
+            <div class="card-header">
+                <h2>Información General</h2>
+                <button class="btn-icon btn-edit"><i class="fas fa-pencil-alt"></i></button>
+            </div>
+            <div class="card-body">
+                <form id="general-info-form">
+                     <div class="logo-and-details">
+                        <div class="logo-display">
+                            <img id="logo-preview-img" src="https://via.placeholder.com/150" alt="Logo Preview">
+                            <button type="button" class="btn btn-secondary btn-edit-logo" style="display: none;">Cambiar Logo</button>
+                            <input type="file" id="logo-upload-input" accept=".png, .jpg, .jpeg" hidden>
+                        </div>
+                        <div class="tenant-details">
+                            <div class="form-group">
+                                <label for="tenant-name">Nombre del tenant</label>
+                                <input type="text" id="tenant-name" class="form-control" value="Mi Empresa Inc." readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="tenant-domain">Dominio</label>
+                                <input type="text" id="tenant-domain" class="form-control" value="miempresa.genesix.com" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tenant-contact">Número de contacto</label>
+                        <input type="text" id="tenant-contact" class="form-control" value="+57 300 123 4567" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="tenant-address">Dirección</label>
+                        <input type="text" id="tenant-address" class="form-control" value="Calle 123 # 45 - 67, Bogotá" readonly>
+                    </div>
+                    <div class="form-actions" style="display: none;">
+                        <button type="button" class="btn btn-secondary btn-cancel">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="payment">
+        <div class="card card-editable" id="payment-method-card">
+             <div class="card-header">
+                <h2>Método de Pago</h2>
+                <button class="btn-icon btn-edit"><i class="fas fa-pencil-alt"></i></button>
+            </div>
+            <div class="card-body">
+                <form id="payment-method-form">
+                    <div class="form-group">
+                        <label for="card-number">Número de Tarjeta</label>
+                        <input type="text" id="card-number" class="form-control" value="**** **** **** 1234" readonly>
+                    </div>
+                    <div class="form-grid-payment">
+                        <div class="form-group">
+                            <label for="card-expiry">Fecha de Vencimiento</label>
+                            <input type="text" id="card-expiry" class="form-control" value="12/25" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-cvc">CVC</label>
+                            <input type="text" id="card-cvc" class="form-control" value="***" readonly>
+                        </div>
+                    </div>
+                     <div class="form-actions" style="display: none;">
+                        <button type="button" class="btn btn-secondary btn-cancel">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar Método</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="subscription">
+        <div class="card">
+            <div class="card-header">
+                <h2>Plan de Suscripción</h2>
+            </div>
+             <div class="card-body">
+                <div class="current-plan-card">
+                    <h5>Profesional</h5>
+                    <p class="price">$99 USD / mes</p>
+                    <p>Tu plan se renueva el 30 de Nov, 2024.</p>
+                    <a href="#" class="btn btn-secondary">Administrar Suscripción</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="history">
+       <div class="card">
+             <div class="card-header">
+                <h2>Historial de Pagos</h2>
+            </div>
+            <div class="card-body">
+                 <div class="table-responsive">
+                     <table class="payment-history-table">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Monto</th>
+                                <th>Estado</th>
+                                <th>Factura</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-label="Fecha">2023-10-01</td>
+                                <td data-label="Monto">$99.00</td>
+                                <td data-label="Estado"><span class="status-paid">Pagado</span></td>
+                                <td data-label="Factura"><a href="#" class="btn-link">Ver</a></td>
+                            </tr>
+                             <tr>
+                                <td data-label="Fecha">2023-09-01</td>
+                                <td data-label="Monto">$99.00</td>
+                                <td data-label="Estado"><span class="status-paid">Pagado</span></td>
+                                <td data-label="Factura"><a href="#" class="btn-link">Ver</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="feedback-message" class="feedback-message"></div>
 </div>`;
+function loadModule(moduleName) {
+  const contentArea = document.getElementById('contentArea');
+  const mainTitle = document.getElementById('mainTitle');
+  mainTitle.textContent = moduleName;
+
+  let viewHTML = '';
+  switch (moduleName) {
+    case 'Dashboard':
+      viewHTML = dashboardViewHTML;
+      break;
+    case 'Agente de Facturación':
+      viewHTML = billingAgentViewHTML;
+      break;
+    case 'Agente de Clientes':
+      viewHTML = clientAgentViewHTML;
+      break;
+    case 'Agente de Marketing':
+      viewHTML = marketingAgentViewHTML;
+      break;
+    case 'Mi cuenta':
+      viewHTML = miCuentaViewHTML;
+      break;
+    default:
+      viewHTML = `<p>Módulo no encontrado: ${moduleName}</p>`;
+  }
+
+  contentArea.innerHTML = viewHTML;
+
+  if (moduleName === 'Mi cuenta') {
+    const script = document.createElement('script');
+    script.src = 'js/mi-cuenta.js';
+    script.defer = true;
+    document.body.appendChild(script);
+    script.onload = () => {
+      document.body.removeChild(script);
+    };
+  }
+
+  if (moduleName === 'Agente de Marketing') {
+    const script = document.createElement('script');
+    script.src = 'js/marketing-agent.js';
+    script.defer = true;
+    document.body.appendChild(script);
+    script.onload = () => {
+      document.body.removeChild(script);
+    };
+  }
+}
