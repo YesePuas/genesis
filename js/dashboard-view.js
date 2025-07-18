@@ -391,7 +391,6 @@ const marketingAgentViewHTML = `
                     </div>
                 </div>
                 <div class="form-actions">
-                    <button type="button" class="btn btn-secondary" id="cancelModalBtn">Cancelar</button>
                     <button type="submit" class="btn btn-primary">Guardar Plan</button>
                 </div>
             </form>
@@ -429,19 +428,56 @@ const miCuentaViewHTML = `
                                 <label for="tenant-name">Nombre del tenant</label>
                                 <input type="text" id="tenant-name" class="form-control" value="Mi Empresa Inc." readonly>
                             </div>
-                            <div class="form-group">
-                                <label for="tenant-domain">Dominio</label>
-                                <input type="text" id="tenant-domain" class="form-control" value="miempresa.genesix.com" readonly>
+                           <div class="form-group">
+                                <label for="social-reason">Razón social</label>
+                                <input type="text" id="social-reason" class="form-control" value="Mi Empresa Inc. S.A.S" readonly>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="tenant-contact">Número de contacto</label>
-                        <input type="text" id="tenant-contact" class="form-control" value="+57 300 123 4567" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="tenant-address">Dirección</label>
-                        <input type="text" id="tenant-address" class="form-control" value="Calle 123 # 45 - 67, Bogotá" readonly>
+                     <div class="form-grid-columns">
+                        <div class="form-group">
+                            <label for="tax-id">Identificación tributaria</label>
+                            <input type="text" id="tax-id" class="form-control" value="900.123.456-7" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="tenant-domain">Dominio</label>
+                            <input type="text" id="tenant-domain" class="form-control" value="miempresa.genesix.com" readonly>
+                        </div>
+                         <div class="form-group">
+                            <label for="tenant-country">País</label>
+                            <select id="tenant-country" class="form-control" disabled>
+                                <option value="CO" selected>Colombia</option>
+                                <option value="MX">México</option>
+                                <option value="US">Estados Unidos</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="tenant-department">Departamento</label>
+                            <select id="tenant-department" class="form-control" disabled>
+                                <option value="CUN" selected>Cundinamarca</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="tenant-city">Ciudad</label>
+                            <select id="tenant-city" class="form-control" disabled>
+                                 <option value="BOG" selected>Bogotá D.C.</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="tenant-address">Dirección</label>
+                            <input type="text" id="tenant-address" class="form-control" value="Calle 123 # 45 - 67" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="tenant-email">Correo electrónico</label>
+                            <input type="email" id="tenant-email" class="form-control" value="contacto@miempresa.com" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="tenant-phone">Teléfono</label>
+                            <div class="phone-input-group">
+                                <input type="text" id="phone-prefix" class="form-control phone-prefix" value="+57" readonly>
+                                <input type="tel" id="tenant-phone" class="form-control phone-number" value="300 123 4567" readonly>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-actions" style="display: none;">
                         <button type="button" class="btn btn-secondary btn-cancel">Cancelar</button>

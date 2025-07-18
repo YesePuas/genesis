@@ -161,6 +161,25 @@
     min-width: 250px;
 }
 
+.form-grid-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.phone-input-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.phone-prefix {
+    flex: 0 0 70px; /* Fixed width for prefix */
+}
+
+.phone-number {
+    flex: 1;
+}
 
 .form-grid-payment {
     display: grid;

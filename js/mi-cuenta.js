@@ -2,6 +2,34 @@ function initializeMyAccount() {
     const accountContainer = document.querySelector('.account-container');
     if (!accountContainer) return;
 
+    // --- Location Data ---
+    const locations = {
+        CO: {
+            name: "Colombia",
+            prefix: "+57",
+            departments: {
+                CUN: { name: "Cundinamarca", cities: { BOG: "Bogotá D.C." } },
+                ANT: { name: "Antioquia", cities: { MED: "Medellín" } }
+            }
+        },
+        MX: {
+            name: "México",
+            prefix: "+52",
+            departments: {
+                JAL: { name: "Jalisco", cities: { GDL: "Guadalajara" } },
+                NLE: { name: "Nuevo León", cities: { MTY: "Monterrey" } }
+            }
+        },
+        US: {
+            name: "Estados Unidos",
+            prefix: "+1",
+            departments: {
+                CA: { name: "California", cities: { LAX: "Los Angeles" } },
+                FL: { name: "Florida", cities: { MIA: "Miami" } }
+            }
+        }
+    };
+
     // --- Tab Navigation ---
     const tabs = accountContainer.querySelectorAll('.tab-link');
     const contents = accountContainer.querySelectorAll('.tab-content');
@@ -28,7 +56,7 @@ function initializeMyAccount() {
         const cancelButton = card.querySelector('.btn-cancel');
         const form = card.querySelector('form');
         const formActions = card.querySelector('.form-actions');
-        const inputs = form ? form.querySelectorAll('input.form-control') : [];
+        const inputsAndSelects = form ? form.querySelectorAll('input.form-control, select.form-control') : [];
         const logoEditButton = card.querySelector('.btn-edit-logo');
 
         let originalValues = {};
@@ -39,13 +67,24 @@ function initializeMyAccount() {
                 if(formActions) formActions.style.display = 'flex';
                 if (logoEditButton) logoEditButton.style.display = 'block';
 
-                if (inputs.length > 0) {
-                    inputs.forEach(input => {
-                        originalValues[input.id] = input.value;
-                        if (input.id !== 'tenant-domain') {
-                            input.readOnly = false;
-                        }
-                    });
+                inputsAndSelects.forEach(input => {
+                    originalValues[input.id] = input.value;
+                    if (input.tagName.toLowerCase() === 'select') {
+                        input.disabled = false;
+                    } else if (input.id !== 'tenant-domain' && input.id !== 'phone-prefix') {
+                        input.readOnly = false;
+                    }
+                });
+                
+                // Directly populate dropdowns and restore original selection
+                populateDepartments();
+                if (originalValues['tenant-department']) {
+                    departmentSelect.value = originalValues['tenant-department'];
+                }
+
+                populateCities();
+                if (originalValues['tenant-city']) {
+                    citySelect.value = originalValues['tenant-city'];
                 }
             });
         }
@@ -53,15 +92,17 @@ function initializeMyAccount() {
         if (cancelButton) {
             cancelButton.addEventListener('click', () => {
                 card.classList.remove('is-editing');
-            if(formActions) formActions.style.display = 'none';
-            if (logoEditButton) logoEditButton.style.display = 'none';
+                if(formActions) formActions.style.display = 'none';
+                if (logoEditButton) logoEditButton.style.display = 'none';
 
-                if (inputs.length > 0) {
-                    inputs.forEach(input => {
-                        input.value = originalValues[input.id];
-                    input.readOnly = true;
+                inputsAndSelects.forEach(input => {
+                    input.value = originalValues[input.id];
+                    if (input.tagName.toLowerCase() === 'select') {
+                        input.disabled = true;
+                    } else {
+                        input.readOnly = true;
+                    }
                 });
-                }
             });
         }
         
@@ -73,12 +114,68 @@ function initializeMyAccount() {
                 card.classList.remove('is-editing');
                 if(formActions) formActions.style.display = 'none';
                 if (logoEditButton) logoEditButton.style.display = 'none';
-                if (inputs.length > 0) {
-                    inputs.forEach(input => input.readOnly = true);
-                }
+                inputsAndSelects.forEach(input => {
+                     if (input.tagName.toLowerCase() === 'select') {
+                        input.disabled = true;
+                    } else {
+                        input.readOnly = true;
+                    }
+                });
             });
         }
     });
+
+    // --- Dynamic Location Logic ---
+    const countrySelect = document.getElementById('tenant-country');
+    const departmentSelect = document.getElementById('tenant-department');
+    const citySelect = document.getElementById('tenant-city');
+    const phonePrefixInput = document.getElementById('phone-prefix');
+
+    function populateDepartments() {
+        const countryCode = countrySelect.value;
+        const currentDepartment = departmentSelect.value;
+        departmentSelect.innerHTML = '<option value="">Selecciona un departamento</option>';
+        citySelect.innerHTML = '<option value="">Selecciona una ciudad</option>';
+        
+        if (countryCode && locations[countryCode]) {
+            const countryData = locations[countryCode];
+            phonePrefixInput.value = countryData.prefix;
+            
+            for (const depCode in countryData.departments) {
+                const option = document.createElement('option');
+                option.value = depCode;
+                option.textContent = countryData.departments[depCode].name;
+                departmentSelect.appendChild(option);
+            }
+             if (currentDepartment) {
+                departmentSelect.value = currentDepartment;
+            }
+        }
+    }
+
+    function populateCities() {
+        const countryCode = countrySelect.value;
+        const depCode = departmentSelect.value;
+        const currentCity = citySelect.value;
+        citySelect.innerHTML = '<option value="">Selecciona una ciudad</option>';
+
+        if (countryCode && depCode && locations[countryCode].departments[depCode]) {
+            const depData = locations[countryCode].departments[depCode];
+            for (const cityCode in depData.cities) {
+                const option = document.createElement('option');
+                option.value = cityCode;
+                option.textContent = depData.cities[cityCode];
+                citySelect.appendChild(option);
+            }
+            if(currentCity) {
+                citySelect.value = currentCity;
+            }
+        }
+    }
+
+    countrySelect.addEventListener('change', populateDepartments);
+    departmentSelect.addEventListener('change', populateCities);
+
 
     // --- Logo Upload specific logic ---
     const logoUploadInput = document.getElementById('logo-upload-input');
@@ -114,4 +211,4 @@ function initializeMyAccount() {
             feedbackMessage.classList.remove('show');
         }, 3000);
     }
-} 
+}
