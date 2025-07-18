@@ -78,14 +78,10 @@ function initializeMyAccount() {
                 
                 // Directly populate dropdowns and restore original selection
                 populateDepartments();
-                if (originalValues['tenant-department']) {
-                    departmentSelect.value = originalValues['tenant-department'];
-                }
+                departmentSelect.value = originalValues['tenant-department'] || "";
 
                 populateCities();
-                if (originalValues['tenant-city']) {
-                    citySelect.value = originalValues['tenant-city'];
-                }
+                citySelect.value = originalValues['tenant-city'] || "";
             });
         }
 
@@ -103,6 +99,9 @@ function initializeMyAccount() {
                         input.readOnly = true;
                     }
                 });
+                 // Restore visual state of selects
+                departmentSelect.innerHTML = `<option>${originalValues['tenant-department-text'] || 'Selecciona un departamento'}</option>`;
+                citySelect.innerHTML = `<option>${originalValues['tenant-city-text'] || 'Selecciona una ciudad'}</option>`;
             });
         }
         
@@ -133,7 +132,6 @@ function initializeMyAccount() {
 
     function populateDepartments() {
         const countryCode = countrySelect.value;
-        const currentDepartment = departmentSelect.value;
         departmentSelect.innerHTML = '<option value="">Selecciona un departamento</option>';
         citySelect.innerHTML = '<option value="">Selecciona una ciudad</option>';
         
@@ -147,16 +145,12 @@ function initializeMyAccount() {
                 option.textContent = countryData.departments[depCode].name;
                 departmentSelect.appendChild(option);
             }
-             if (currentDepartment) {
-                departmentSelect.value = currentDepartment;
-            }
         }
     }
 
     function populateCities() {
         const countryCode = countrySelect.value;
         const depCode = departmentSelect.value;
-        const currentCity = citySelect.value;
         citySelect.innerHTML = '<option value="">Selecciona una ciudad</option>';
 
         if (countryCode && depCode && locations[countryCode].departments[depCode]) {
@@ -166,9 +160,6 @@ function initializeMyAccount() {
                 option.value = cityCode;
                 option.textContent = depData.cities[cityCode];
                 citySelect.appendChild(option);
-            }
-            if(currentCity) {
-                citySelect.value = currentCity;
             }
         }
     }
