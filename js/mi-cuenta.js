@@ -69,7 +69,9 @@ function initializeMyAccount() {
 
                 inputsAndSelects.forEach(input => {
                     originalValues[input.id] = input.value;
-                    if (input.tagName.toLowerCase() === 'select') {
+                     if (input.tagName.toLowerCase() === 'select') {
+                        const selectedOption = input.querySelector(`option[value="${input.value}"]`);
+                        originalValues[`${input.id}-text`] = selectedOption ? selectedOption.textContent : input.value;
                         input.disabled = false;
                     } else if (input.id !== 'tenant-domain' && input.id !== 'phone-prefix') {
                         input.readOnly = false;
@@ -95,13 +97,16 @@ function initializeMyAccount() {
                     input.value = originalValues[input.id];
                     if (input.tagName.toLowerCase() === 'select') {
                         input.disabled = true;
+                        // For DYNAMIC dropdowns, reset their content to the display state.
+                        // The static Country dropdown is left alone to preserve its options.
+                        if (input.id === 'tenant-department' || input.id === 'tenant-city') {
+                            const originalText = originalValues[`${input.id}-text`] || 'Selecciona...';
+                            input.innerHTML = `<option value="${input.value}">${originalText}</option>`;
+                        }
                     } else {
                         input.readOnly = true;
                     }
                 });
-                 // Restore visual state of selects
-                departmentSelect.innerHTML = `<option>${originalValues['tenant-department-text'] || 'Selecciona un departamento'}</option>`;
-                citySelect.innerHTML = `<option>${originalValues['tenant-city-text'] || 'Selecciona una ciudad'}</option>`;
             });
         }
         
