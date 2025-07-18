@@ -284,6 +284,94 @@
     font-weight: 500;
 }
 
+.btn-link-danger {
+    color: #dc2626;
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* --- Payment Method Redesign --- */
+.payment-gateway-info {
+    background-color: #f3f4f6;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+    color: #4b5563;
+}
+
+.subsection-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.payment-methods-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.payment-method-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    transition: box-shadow 0.2s;
+    flex-wrap: wrap; /* Allow wrapping for responsiveness */
+    gap: 1rem; /* Gap between items when they wrap */
+}
+
+.payment-method-item:hover {
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+.card-details {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    color: #374151;
+}
+
+.card-name {
+    display: block;
+    font-weight: 500;
+}
+
+.card-expiry {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.status-badge-primary {
+    background-color: #e0e7ff;
+    color: #3730a3;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 0.75rem;
+}
+
+.card-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
 /* --- Responsive Design --- */
 @media (min-width: 640px) {
     .tab-link {

@@ -50,6 +50,24 @@ function initializeMyAccount() {
     // --- Editable Cards Logic ---
     const feedbackMessage = document.getElementById('feedback-message');
     const editableCards = accountContainer.querySelectorAll('.card-editable');
+    const paymentMethodCard = document.getElementById('payment-method-card');
+
+
+    if (paymentMethodCard) {
+        const editButton = paymentMethodCard.querySelector('.btn-edit');
+        const cardActions = paymentMethodCard.querySelectorAll('.card-actions');
+        let isEditing = false;
+
+        editButton.addEventListener('click', () => {
+            isEditing = !isEditing;
+            cardActions.forEach(actions => {
+                actions.style.display = isEditing ? 'flex' : 'none';
+            });
+            // Optional: change edit button text/icon
+            editButton.innerHTML = isEditing ? '<i class="fas fa-times"></i>' : '<i class="fas fa-pencil-alt"></i>';
+        });
+    }
+
 
     editableCards.forEach(card => {
         const editButton = card.querySelector('.btn-edit');

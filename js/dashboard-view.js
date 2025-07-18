@@ -489,32 +489,54 @@ const miCuentaViewHTML = `
     </div>
 
     <div class="tab-content" id="payment">
-        <div class="card card-editable" id="payment-method-card">
+        <div class="card" id="payment-method-card">
              <div class="card-header">
                 <h2>Método de Pago</h2>
                 <button class="btn-icon btn-edit"><i class="fas fa-pencil-alt"></i></button>
             </div>
             <div class="card-body">
-                <form id="payment-method-form">
-                    <div class="form-group">
-                        <label for="card-number">Número de Tarjeta</label>
-                        <input type="text" id="card-number" class="form-control" value="**** **** **** 1234" readonly>
-                    </div>
-                    <div class="form-grid-payment">
-                        <div class="form-group">
-                            <label for="card-expiry">Fecha de Vencimiento</label>
-                            <input type="text" id="card-expiry" class="form-control" value="12/25" readonly>
+                <div class="payment-gateway-info">
+                    <p>Tus métodos de pago son gestionados de forma segura por nuestra pasarela de pagos. No almacenamos esta información directamente.</p>
+                </div>
+
+                <h3 class="subsection-title">Tarjetas guardadas</h3>
+                <div class="payment-methods-list">
+                    <!-- Example Saved Card -->
+                    <div class="payment-method-item">
+                        <div class="card-details">
+                            <i class="fab fa-cc-visa card-icon"></i>
+                            <div>
+                                <span class="card-name">Visa terminada en 1234</span>
+                                <span class="card-expiry">Expira 12/2025</span>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="card-cvc">CVC</label>
-                            <input type="text" id="card-cvc" class="form-control" value="***" readonly>
+                        <div class="card-status">
+                            <span class="status-badge-primary">Principal</span>
+                        </div>
+                        <div class="card-actions" style="display: none;">
+                            <button class="btn-link-danger">Eliminar</button>
                         </div>
                     </div>
-                     <div class="form-actions" style="display: none;">
-                        <button type="button" class="btn btn-secondary btn-cancel">Cancelar</button>
-                        <button type="submit" class="btn btn-primary">Guardar Método</button>
+                     <!-- Example Secondary Card -->
+                    <div class="payment-method-item">
+                        <div class="card-details">
+                             <i class="fab fa-cc-mastercard card-icon"></i>
+                            <div>
+                                <span class="card-name">Mastercard terminada en 5678</span>
+                                <span class="card-expiry">Expira 08/2026</span>
+                            </div>
+                        </div>
+                         <div class="card-status"></div>
+                        <div class="card-actions" style="display: none;">
+                            <a href="#" class="btn-link">Establecer como principal</a>
+                            <button class="btn-link-danger">Eliminar</button>
+                        </div>
                     </div>
-                </form>
+                </div>
+
+                <div class="form-actions" style="padding-top: 1.5rem; margin-top: 1.5rem;">
+                    <button class="btn btn-primary">Agregar método de pago</button>
+                </div>
             </div>
         </div>
     </div>
