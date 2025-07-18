@@ -567,11 +567,12 @@ const miCuentaViewHTML = `
                 <h2>Historial de Pagos</h2>
             </div>
             <div class="card-body">
-                 <div class="table-responsive">
+                 <div class="table-responsive" style="overflow-x: auto;">
                      <table class="payment-history-table">
                         <thead>
                             <tr>
                                 <th>Fecha</th>
+                                <th>Plan</th>
                                 <th>Monto</th>
                                 <th>Estado</th>
                                 <th>Factura</th>
@@ -580,12 +581,14 @@ const miCuentaViewHTML = `
                         <tbody>
                             <tr>
                                 <td data-label="Fecha">2023-10-01</td>
+                                <td data-label="Plan">Profesional</td>
                                 <td data-label="Monto">$99.00</td>
                                 <td data-label="Estado"><span class="status-paid">Pagado</span></td>
                                 <td data-label="Factura"><a href="#" class="btn-link">Ver</a></td>
                             </tr>
                              <tr>
                                 <td data-label="Fecha">2023-09-01</td>
+                                <td data-label="Plan">Profesional</td>
                                 <td data-label="Monto">$99.00</td>
                                 <td data-label="Estado"><span class="status-paid">Pagado</span></td>
                                 <td data-label="Factura"><a href="#" class="btn-link">Ver</a></td>
